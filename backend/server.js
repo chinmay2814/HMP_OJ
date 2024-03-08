@@ -5,12 +5,15 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 
-const errorHandler=require('./middleware/error')
+const errorHandler=require('./middleware/error');
 const mongoose=require("mongoose");
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+//import Routes
+const authRoutes=require("./routes/authRoutes");
+
+// app.get('/', (req, res) => {
+//   res.send('Hello, World!');
+// });
 
 //database
 mongoose.connect('mongodb://127.0.0.1:27017/HMP_OJ_DB',{
@@ -32,8 +35,15 @@ app.use(
 );
 app.use(cookieParser());
 
+
+
+//routes middleware
+app.use('/api',authRoutes);
+
 //error middleware
 app.use(errorHandler);
+
+
 
 //port
 const PORT = process.env.PORT || 5000;
