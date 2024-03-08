@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import "./LoginPage.css";
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,10 +24,11 @@ const SignupPage = () => {
   };
 
   return (
-    <div>
+    <div className="wrapper">
+      <div class="form-box login">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div class="input-box">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -37,7 +39,7 @@ const SignupPage = () => {
             required
           />
         </div>
-        <div>
+        <div class="input-box">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -48,7 +50,7 @@ const SignupPage = () => {
             required
           />
         </div>
-        <div>
+        <div class="input-box">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -59,7 +61,7 @@ const SignupPage = () => {
             required
           />
         </div>
-        <div>
+        <div class="input-box">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -70,7 +72,7 @@ const SignupPage = () => {
             required
           />
         </div>
-        <div>
+        <div class="input-box">
           <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
             type="password"
@@ -82,8 +84,9 @@ const SignupPage = () => {
           />
         </div>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" class="btn">Sign Up</button>
       </form>
+      </div>
     </div>
   );
 };
