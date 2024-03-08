@@ -1,5 +1,6 @@
 // LoginPage.js
 import React, { useState } from "react";
+import "./LoginPage.css"; // Import CSS file
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -21,10 +22,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className="wrapper">
+     <div class="form-box login">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div class="input-box">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -33,7 +35,7 @@ const LoginPage = () => {
             onChange={handleUsernameChange}
           />
         </div>
-        <div>
+        <div class="input-box">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -42,8 +44,10 @@ const LoginPage = () => {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">Login</button>
+
+        <button type="submit" class="btn">Login</button>
       </form>
+      </div>
     </div>
   );
 };
