@@ -24,6 +24,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("hi");
     try {
       const response = await axios.post("http://localhost:5000/login", {
         username,
@@ -32,13 +33,14 @@ const LoginPage = () => {
 
       if (response.status === 200) {
         const user = await response.data;
-        // Handle successful login (e.g., store token in local storage)
+        // Handle successful login
         console.log("Login successful:", user);
 
         toast.success("Login successful!");
         navigate("/");
       } else {
-        // Handle login failure (e.g., show error message)
+        // Handle login failure
+
         console.error("Login failed");
       }
     } catch (error) {
@@ -79,7 +81,7 @@ const LoginPage = () => {
             <label htmlFor="showPasswordCheckbox">Show password</label>
           </div>
 
-          <button type="submit" class="btn">
+          <button type="submit" class="btn" onClick={handleSubmit}>
             Login
           </button>
         </form>
