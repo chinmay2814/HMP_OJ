@@ -26,7 +26,7 @@ const LoginPage = () => {
     e.preventDefault();
     console.log("hi");
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("http://localhost:5000/api/login", {
         username,
         password,
       });

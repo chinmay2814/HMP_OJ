@@ -10,16 +10,44 @@ const SignupPage = () => {
     confirmPassword: "",
     email: "",
   });
+  const [passwordError, setPasswordError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform form validation here (e.g., check if passwords match, etc.)
-    console.log(formData);
+    if (formData.password !== formData.confirmPassword) {
+      setPasswordError("Passwords do not match");
+      toast.error("password not matched");
+    } else {
+      // Reset password error state if passwords match
+      setPasswordError("");
+      // Proceed with form submission
+      console.log(formData);
+    }
+    try {
+      const response = await axios.post("http://localhost:5000/api/signup", {
+        formData,
+      });
+
+      if (response.status === 200) {
+        const user = await response.data;
+        // Handle successful signup
+        console.log("signup successful:", user);
+
+        toast.success("signup successful!");
+        navigate("/login");
+      } else {
+        // Handle signup failure
+
+        console.error("signup failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
