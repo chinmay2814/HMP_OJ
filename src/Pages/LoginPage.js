@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import "./LoginPage.css"; // Import CSS file
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -46,38 +47,43 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            id="showPasswordCheckbox"
-            checked={showPassword}
-            onChange={handleShowPasswordToggle}
-          />
-          <label htmlFor="showPasswordCheckbox">Show password</label>
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div className="wrapper">
+      <div class="form-box login">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div class="input-box">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={handleUsernameChange}
+            />
+          </div>
+          <div class="input-box">
+            <label htmlFor="password">Password:</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="showPasswordCheckbox"
+              checked={showPassword}
+              onChange={handleShowPasswordToggle}
+            />
+            <label htmlFor="showPasswordCheckbox">Show password</label>
+          </div>
+
+          <button type="submit" class="btn">
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
