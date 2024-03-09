@@ -3,117 +3,127 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
+
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: "",
-    username: "",
-    password: "",
-    confirmPassword: "",
+    userName: "",
     email: "",
+    password: "",
   });
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
+
+    if (formData.password !== confirmPassword) {
       setPasswordError("Passwords do not match");
-      toast.error("password not matched");
+      toast.error("Passwords do not match");
     } else {
-      // Reset password error state if passwords match
-      setPasswordError("");
-      // Proceed with form submission
-      console.log(formData);
-    }
-    try {
-      const response = await axios.post("http://localhost:5000/api/signup", {
-        formData,
-      });
+      setPasswordError(""); // Reset password error state if passwords match
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/signup",
+          formData
+        );
 
-      if (response.status === 200) {
-        const user = await response.data;
-        // Handle successful signup
-        console.log("signup successful:", user);
-
-        toast.success("signup successful!");
-        navigate("/login");
-      } else {
-        // Handle signup failure
-
-        console.error("signup failed");
+        if (response.status === 200) {
+          const user = response.data;
+          // Handle successful signup
+          console.log("signup successful:", user);
+          toast.success("Signup successful!");
+          navigate("/login");
+        } else {
+          // Handle signup failure
+          console.error("Signup failed");
+          toast.error("Signup failed");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        toast.error("Error occurred during signup");
       }
-    } catch (error) {
-      console.error("Error:", error);
     }
   };
 
   return (
     <div className="wrapper">
-      <div class="form-box login">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div class="input-box">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div class="input-box">
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <div className="form-box login">
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-box">
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <label htmlFor="userName">userName:</label>
+            <input
+              type="text"
+              id="userName"
+              name="userName"
+              value={formData.userName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              required
+            />
+          </div>
 
-        <button type="submit" class="btn">Sign Up</button>
-      </form>
+          {passwordError && <p className="error-message">{passwordError}</p>}
+
+          <button type="submit" className="btn">
+            Sign Up
+          </button>
+        </form>
       </div>
     </div>
   );

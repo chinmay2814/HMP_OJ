@@ -7,14 +7,14 @@ exports.signup = async (req, res, next) => {
     const userExist = await User.findOne({ email });
     const usernameExist =await User.findOne({userName });
     if (userExist) {
-      return next(new ErrorResponse("E-mail already registred", 400));
+      return next(new ErrorResponse("E-mail already registred", 420));
     }
     if(usernameExist){
-        return next(new ErrorResponse("Username already exist",400))
+        return next(new ErrorResponse("Username already exist",420))
     }
     try {
       const user = await User.create(req.body);
-      res.status(201).json({
+      res.status(200).json({
         success: true,
         user,
       });
@@ -44,8 +44,10 @@ exports.signup = async (req, res, next) => {
       if (!isMatched) {
         return next(new ErrorResponse("invalid credentials", 400));
       }
+      //console.log("user login");
+      return res.status(200).json({ message: 'succes'});
   
-      sendTokenResponse(user, 200, res);
+      //sendTokenResponse(user, 200, res);
     } catch (error) {
       next(error);
     }

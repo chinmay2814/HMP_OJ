@@ -4,49 +4,49 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css"; // Import CSS file
 
-const LoginPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  const LoginPage = () => {
+    const [userName, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
+    const handleUsernameChange = (e) => {
+      setUsername(e.target.value);
+    };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+    const handlePasswordChange = (e) => {
+      setPassword(e.target.value);
+    };
 
-  const handleShowPasswordToggle = () => {
-    setShowPassword(!showPassword);
-  };
+    const handleShowPasswordToggle = () => {
+      setShowPassword(!showPassword);
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("hi");
-    try {
-      const response = await axios.post("http://localhost:5000/api/login", {
-        username,
-        password,
-      });
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      console.log("hi");
+      try {
+        const response = await axios.post("http://localhost:5000/api/login", {
+          userName,
+          password,
+        });
 
-      if (response.status === 200) {
-        const user = await response.data;
-        // Handle successful login
-        console.log("Login successful:", user);
+        if (response.status === 200) {
+          const user = await response.data;
+          // Handle successful login
+          console.log("Login successful:", user);
 
-        toast.success("Login successful!");
-        navigate("/");
-      } else {
-        // Handle login failure
+          toast.success("Login successful!");
+          navigate("/");
+        } else {
+          // Handle login failure
 
-        console.error("Login failed");
+          console.error("Login failed");
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+    };
 
   return (
     <div className="wrapper">
@@ -58,7 +58,7 @@ const LoginPage = () => {
             <input
               type="text"
               id="username"
-              value={username}
+              value={userName}
               onChange={handleUsernameChange}
             />
           </div>
