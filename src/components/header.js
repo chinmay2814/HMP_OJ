@@ -1,38 +1,21 @@
 // Header.js
 import React from "react";
-import logo from "./logo.png"; // Import your logo file
+import "./components.css";
+import LoginPage from "../Pages/LoginPage";
 function Header() {
   return (
-    <header style={headerStyle}>
-      <div style={logoStyle}>
-        {/* <img src={logo} alt="Logo" style={{ width: "100px", height: "auto" }} /> */}
-      </div>
-      <div style={profileStyle}>
-        {/* Place your profile information here */}
-        <span>Welcome, Username</span>
-        {/* You can add more profile details or dropdowns */}
-      </div>
+    <header>
+      <h2 class="first">HMP OJ</h2>
+      <nav class="navigation">
+        <a href="#">Home</a>
+        <a href="#">Practice</a>
+        <a href="#">Contest</a>
+        <a href="#">Learn</a>
+        <a href="login">Login</a>
+        <a href="signup">Signup</a>
+      </nav>
     </header>
   );
 }
-
-// Styles
-const headerStyle = {
-  backgroundColor: "#333",
-  color: "#fff",
-  padding: "10px",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
-
-const logoStyle = {
-  marginRight: "auto", // Pushes profile section to the right
-};
-
-const profileStyle = {
-  marginLeft: "auto", // Pushes profile section to the right
-  textAlign: "right",
-};
 
 export default Header;
