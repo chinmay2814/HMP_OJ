@@ -8,7 +8,7 @@
 body {
   line-height: 0.8;
   text-align: center;
-  background-color: darkgray;
+  background-color: darkkhaki;
 
   display: flex;
   justify-content: center;
@@ -23,7 +23,7 @@ header {
   text-shadow: 2px black;
   width: 100%;
   padding: 20px 100px;
-  background: rgb(231, 231, 221);
+  background: #8D8950;
   display: flex;
   justify-self: space-between;
   align-items: center;
@@ -107,7 +107,7 @@ p {
   letter-spacing: 5px;
   line-height: 1.8;
   text-align: center;
-  background-color: darkgrey;
+  background-color: darkkhaki;
   color: black;
   display: block;
   margin-top: 1em;
