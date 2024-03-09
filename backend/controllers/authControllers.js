@@ -1,15 +1,20 @@
 const User=require('../models/userModels');
 const ErrorResponse=require("../utils/errorResponse");
 
+
 exports.signup = async (req, res, next) => {
-    const { email } = req.body;
+    const { email,userName } = req.body;
     const userExist = await User.findOne({ email });
+    const usernameExist =await User.findOne({userName });
     if (userExist) {
-      return next(new ErrorResponse("E-mail already registred", 400));
+      return next(new ErrorResponse("E-mail already registred", 420));
+    }
+    if(usernameExist){
+        return next(new ErrorResponse("Username already exist",420))
     }
     try {
       const user = await User.create(req.body);
-      res.status(201).json({
+      res.status(200).json({
         success: true,
         user,
       });
@@ -20,17 +25,17 @@ exports.signup = async (req, res, next) => {
 
   exports.login = async (req, res, next) => {
     try {
-      const { email, password } = req.body;
+      const { userName, password } = req.body;
       //validation
-      if (!email) {
-        return next(new ErrorResponse("please add an email", 403));
+      if (!userName) {
+        return next(new ErrorResponse("please add an username", 403));
       }
       if (!password) {
         return next(new ErrorResponse("please add a password", 403));
       }
   
-      //check user email
-      const user = await User.findOne({ email });
+      //check user name
+      const user = await User.findOne({ userName });
       if (!user) {
         return next(new ErrorResponse("invalid credentials", 400));
       }
@@ -39,8 +44,10 @@ exports.signup = async (req, res, next) => {
       if (!isMatched) {
         return next(new ErrorResponse("invalid credentials", 400));
       }
+      //console.log("user login");
+      return res.status(200).json({ message: 'succes'});
   
-      sendTokenResponse(user, 200, res);
+      //sendTokenResponse(user, 200, res);
     } catch (error) {
       next(error);
     }

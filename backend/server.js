@@ -8,6 +8,15 @@ const cookieParser = require("cookie-parser");
 const errorHandler=require('./middleware/error');
 const mongoose=require("mongoose");
 
+
+ //
+require('dotenv').config();
+
+// const jwtSecret = process.env.JWT_SECRET;
+// console.log(jwtSecret);
+
+
+
 //import Routes
 const authRoutes=require("./routes/authRoutes");
 
@@ -17,8 +26,8 @@ const authRoutes=require("./routes/authRoutes");
 
 //database
 mongoose.connect('mongodb://127.0.0.1:27017/HMP_OJ_DB',{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    //useNewUrlParser: true,
+    //useUnifiedTopology: true,
 })
 .then(()=>console.log("MongoDb connected"))
 .catch((err)=> console.log("MongoDb error",err));
@@ -46,6 +55,8 @@ app.use(errorHandler);
 
 
 //port
-const PORT = process.env.PORT || 5000;
+//const PORT = process.env.PORT ;
+const PORT=5000;
+
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
