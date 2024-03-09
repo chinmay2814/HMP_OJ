@@ -45,9 +45,13 @@ exports.signup = async (req, res, next) => {
         return next(new ErrorResponse("invalid credentials", 400));
       }
       //console.log("user login");
-      return res.status(200).json({ message: 'succes'});
+      sendTokenResponse(user, 200, res);
+      // return res.status(200).json({
+      //    message: 'succes',
+      //    user
+      //   });
   
-      //sendTokenResponse(user, 200, res);
+      
     } catch (error) {
       next(error);
     }

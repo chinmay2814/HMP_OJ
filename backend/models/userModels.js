@@ -61,10 +61,12 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
   };
  
   // return a JWT token
+  // jkey  : secret key for signing the token
+  // expiresIn : time after which the token will be invalidated in seconds
+  const jkey="jwtPrivateKey";
 
-  
   userSchema.methods.getJwtToken = function () {
-    return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
+    return jwt.sign({ id: this.id }, jkey, {
       expiresIn: 3600,
     });
   };
