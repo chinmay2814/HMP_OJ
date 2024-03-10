@@ -49,7 +49,6 @@ const LoginPage = () => {
     }
   };
 
-  const handleGoogle = async (e) => {};
   return (
     <div className="wrapper">
       <div class="form-box login">
@@ -82,13 +81,9 @@ const LoginPage = () => {
             />
             <label htmlFor="showPasswordCheckbox">Show password</label>
           </div>
-          <p> </p>
+
           <button type="submit" class="btn" onClick={handleSubmit}>
             Login
-          </button>
-          <p> </p>
-          <button type="submit" class="btn2" onClick={handleGoogle}>
-            Login in with Google
           </button>
         </form>
       </div>
