@@ -6,7 +6,7 @@ exports.signup = async (req, res, next) => {
   const userExist = await User.findOne({ email });
   const usernameExist = await User.findOne({ userName });
   if (userExist) {
-    return next(new ErrorResponse("E-mail already registred", 420));
+    return next(new ErrorResponse("E-mail already registered", 420));
   }
   if (usernameExist) {
     return next(new ErrorResponse("Username already exist", 420));
@@ -46,7 +46,7 @@ exports.login = async (req, res, next) => {
     //console.log("user login");
     sendTokenResponse(user, 200, res);
       // return res.status(200).json({
-      //    message: "succes", user ,
+      //    message: "success", user ,
       //    user
       //   });
 

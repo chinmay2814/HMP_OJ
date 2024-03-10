@@ -4,7 +4,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
-
 const errorHandler=require('./middleware/error');
 const mongoose=require("mongoose");
 
@@ -15,6 +14,7 @@ require('dotenv').config();
 // const jwtSecret = process.env.JWT_SECRET;
 // console.log(jwtSecret);
 
+//passport
 
 
 //import Routes
