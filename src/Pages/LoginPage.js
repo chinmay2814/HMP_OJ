@@ -88,7 +88,7 @@ const LoginPage = () => {
             Login
           </button>
           <p> </p>
-          <button type="submit" class="btn2" onClick={handleGoogle}>
+          <button type="submit" class="btn2" onClick={handleGoogle} href = "/api/google">
             Login in with Google
           </button>
         </form>

@@ -43,7 +43,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-
+app.get
 
 
 //routes middleware
