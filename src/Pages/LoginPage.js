@@ -50,42 +50,44 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="wrapper">
-      <div class="form-box login">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div class="input-box">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              value={userName}
-              onChange={handleUsernameChange}
-            />
-          </div>
-          <div class="input-box">
-            <label htmlFor="password">Password:</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="showPasswordCheckbox"
-              checked={showPassword}
-              onChange={handleShowPasswordToggle}
-            />
-            <label htmlFor="showPasswordCheckbox">Show password</label>
-          </div>
+    <div className="loginbody">
+      <div className="wrapper">
+        <div className="form-box login">
+          <h2>Login</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="input-box">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                value={userName}
+                onChange={handleUsernameChange}
+              />
+            </div>
+            <div className="input-box">
+              <label htmlFor="password">Password:</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="showPasswordCheckbox"
+                checked={showPassword}
+                onChange={handleShowPasswordToggle}
+              />
+              <label htmlFor="showPasswordCheckbox">Show password</label>
+            </div>
 
-          <button type="submit" class="btn" onClick={handleSubmit}>
-            Login
-          </button>
-        </form>
+            <button type="submit" className="btn" onClick={handleSubmit}>
+              Login
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
