@@ -4,6 +4,7 @@ import LoginPage from "./Pages/LoginPage";
 import SignupPage from "./Pages/SignupPage";
 import Homepage from "./Pages/HomePage";
 import SubmissionPage from "./Pages/SubmitPage";
+import Dashboard from "./Pages/Dashboard";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />}></Route>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/submit" element={<SubmissionPage />}></Route>
+          <Route path="/profile" element={<Dashboard />}></Route>
         </Routes>
       </BrowserRouter>
     </>

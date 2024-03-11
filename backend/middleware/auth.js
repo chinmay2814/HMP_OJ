@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const passport = require("passport");
 // Import dotenv package
@@ -30,7 +29,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
-=======
 const ErrorResponse = require("../utils/errorResponse");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModels");
@@ -61,4 +59,3 @@ exports.isAdmin = (req, res, next) => {
     }
     next();
   };
->>>>>>> a8b8f24d3faedbbf305af3076567c67f34ecf4aa
