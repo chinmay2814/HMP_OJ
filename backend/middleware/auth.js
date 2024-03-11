@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const passport = require("passport");
 // Import dotenv package
@@ -29,3 +30,35 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+=======
+const ErrorResponse = require("../utils/errorResponse");
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModels");
+
+// check is user is authenticated
+exports.isAuthenticated = async (req, res, next) => {
+  const { token } = req.cookies;
+  // Make sure token exists
+  if (!token) {
+    return next(new ErrorResponse("Not authorized to access this route", 401));
+  }
+
+  try {
+    // Verify token
+    const jkey="jwtPrivateKey";
+    const decoded = jwt.verify(token, jkey);
+    req.user = await User.findById(decoded.id);
+    next();
+  } catch (error) {
+    return next(new ErrorResponse("Not authorized to access this route", 401));
+  }
+};
+
+//middleware for admin
+exports.isAdmin = (req, res, next) => {
+    if (req.user.role === 0) {
+      return next(new ErrorResponse("Access denied, you must an admin", 401));
+    }
+    next();
+  };
+>>>>>>> a8b8f24d3faedbbf305af3076567c67f34ecf4aa

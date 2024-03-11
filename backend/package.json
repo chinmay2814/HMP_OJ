@@ -14,8 +14,12 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1",
     "morgan": "^1.10.0",
+<<<<<<< HEAD
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0"
+=======
+    "rapidapi-connect": "^0.0.6"
+>>>>>>> a8b8f24d3faedbbf305af3076567c67f34ecf4aa
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

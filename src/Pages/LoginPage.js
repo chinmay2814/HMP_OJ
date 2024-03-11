@@ -49,6 +49,7 @@ const LoginPage = () => {
     }
   };
 
+<<<<<<< HEAD
   const handleGoogleLogin = () => {
     window.location.href = "/api/auth";
   };
@@ -93,6 +94,48 @@ const LoginPage = () => {
             Login in with Google
           </button>
         </form>
+=======
+  const handleGoogle = async (e) => {};
+  return (
+    <div className="loginbody">
+      <div className="wrapper">
+        <div className="form-box login">
+          <h2>Login</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="input-box">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                value={userName}
+                onChange={handleUsernameChange}
+              />
+            </div>
+            <div className="input-box">
+              <label htmlFor="password">Password:</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="showPasswordCheckbox"
+                checked={showPassword}
+                onChange={handleShowPasswordToggle}
+              />
+              <label htmlFor="showPasswordCheckbox">Show password</label>
+            </div>
+
+            <button type="submit" className="btn" onClick={handleSubmit}>
+              Login
+            </button>
+          </form>
+        </div>
+>>>>>>> a8b8f24d3faedbbf305af3076567c67f34ecf4aa
       </div>
     </div>
   );
