@@ -9,7 +9,7 @@ function LeaderboardComponent() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("/api/allUsers"); // assuming your backend endpoint is /api/allUsers
+        const response = await axios.get("http://localhost:5000/api/leaderboard");
         setUsers(response.data.users);
         setLoading(false);
       } catch (error) {
@@ -19,7 +19,7 @@ function LeaderboardComponent() {
     };
 
     fetchUsers();
-  }, []); // Empty dependency array ensures the effect runs only once after the initial render
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -28,6 +28,8 @@ function LeaderboardComponent() {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+  console.log("hi", users); // Log the current state of users after it has been updated
 
   return (
     <div>
@@ -42,10 +44,11 @@ function LeaderboardComponent() {
         </thead>
         <tbody>
           {users.map((user) => (
+            
             <tr key={user._id}>
-              <td>{user.username}</td>
-              <td>{user.points}</td>
-              <td>{user.problemsSolved}</td>
+              <td>{user.userName}</td>
+              <td>{user.userName}</td>
+              <td>{user.userName}</td>
             </tr>
           ))}
         </tbody>

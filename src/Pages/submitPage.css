@@ -4,7 +4,7 @@
   align-items: center; /* Center vertically */
 
   flex-direction: column;
-  background-image: url("D:\downloads\peakpx.jpg");
+  /* background-image: url("D:\downloads\peakpx.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }
