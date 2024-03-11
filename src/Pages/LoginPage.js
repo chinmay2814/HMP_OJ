@@ -49,7 +49,8 @@ const LoginPage = () => {
     }
   };
 
-  const handleGoogle = async (e) => {
+  const handleGoogleLogin = () => {
+    window.location.href = "/api/auth";
   };
   return (
     <div className="wrapper">
@@ -88,7 +89,7 @@ const LoginPage = () => {
             Login
           </button>
           <p> </p>
-          <button type="submit" class="btn2" onClick={handleGoogle} href = "/api/google">
+          <button type="submit" class="btn2" onClick={handleGoogleLogin}>
             Login in with Google
           </button>
         </form>
