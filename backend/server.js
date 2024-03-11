@@ -19,6 +19,7 @@ require('dotenv').config();
 
 //import Routes
 const authRoutes=require("./routes/authRoutes");
+const  userRoutes=require("./routes/userRoutes");
 
 // app.get('/', (req, res) => {
 //   res.send('Hello, World!');
@@ -48,10 +49,62 @@ app.use(cookieParser());
 
 //routes middleware
 app.use('/api',authRoutes);
+app.use("/api",userRoutes);
+
+//api for comilation
+const axios = require('axios');
+
+const cppcode = `#include <iostream>
+using namespace std;
+
+int main() {
+    int x ;
+    int y ;
+    cin >>x >>y;
+    int sum = x + y;
+    cout << sum;
+    return 0;
+}`;
+
+const exout='5';
+
+const options = {
+    method: 'POST',
+    url: 'https://judge0-ce.p.rapidapi.com/submissions',
+    params: {
+        base64_encoded: 'false',
+        wait: 'true',
+        fields: '*'
+    },
+    headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': '18f758967emsh70d88d5f7e10e13p14acffjsne5bf2100c38d',
+        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+    },
+    data: {
+        language_id: 52,
+        source_code: cppcode,
+        stdin: '5 2\n',
+        expected_output:exout
+    }
+};
+
+const sendCodeToCompiler = async () => {
+    try {
+        const response = await axios.request(options);
+        console.log(response.data);
+        //console.log()
+        console.log(response.data.stdout==response.data.expected_output); //prints the output of the program
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+sendCodeToCompiler();
 
 //error middleware
 app.use(errorHandler);
-
+//
 
 
 //port
