@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         trim: true,
         required: [true, "password is required"],
-        minlength: [6, "password must have at least (6) caracters"],
+        minlength: [6, "password must have at least (6) characters"],
       },
   
       //jobsHistory: [jobsHistorySchema],

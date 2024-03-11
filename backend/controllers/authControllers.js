@@ -45,12 +45,10 @@ exports.login = async (req, res, next) => {
     }
     //console.log("user login");
     sendTokenResponse(user, 200, res);
-      // return res.status(200).json({
-      //    message: "success", user ,
-      //    user
-      //   });
-
-    
+    // return res.status(200).json({
+    //    message: "success", user ,
+    //    user
+    //   });
   } catch (error) {
     next(error);
   }
