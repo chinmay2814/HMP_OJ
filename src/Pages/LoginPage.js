@@ -49,6 +49,7 @@ const LoginPage = () => {
     }
   };
 
+  const handleGoogle = async (e) => {};
   return (
     <div className="loginbody">
       <div className="wrapper">

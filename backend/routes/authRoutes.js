@@ -2,7 +2,7 @@ const express=require("express");
 const router=express.Router();
 
 //api calling
-const {signup,login}=require("../controllers/authControllers")
+const {signup,login,logout}=require("../controllers/authControllers")
 
 //routes
 
@@ -11,6 +11,9 @@ router.post("/signup",signup);
 
 //login
 router.post("/login",login);
+
+//logout
+router.get("/logout",logout);
 
 module.exports = router;
 
