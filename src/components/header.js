@@ -1,9 +1,9 @@
 // Header.js
 import React from "react";
-import "./components.css";
+import "./header.css";
 import LoginPage from "../Pages/LoginPage";
 function Header() {
-  let userName = ""; 
+  let userName = "";
   const storedUser = localStorage.getItem("user");
   if (storedUser) {
     const userData = JSON.parse(storedUser);
@@ -15,25 +15,24 @@ function Header() {
     // User data not found in localStorage, handle accordingly
   }
   return (
-    <header>
-      <h2 className="first">HMP OJ</h2>
-      <nav className="navigation">
+    <header className="body-components">
+      <h2 class="first">HMP OJ</h2>
+      <nav class="navigation">
         <a href="#">Home</a>
         <a href="#">Practice</a>
         <a href="#">Contest</a>
         <a href="#">Learn</a>
         {storedUser ? (
           <>
-          <a href="#">{userName}</a>
-          <a href="#">Logout</a>
+            <a href="#">{userName}</a>
+            <a href="#">Logout</a>
           </>
         ) : (
           <>
-          <a href="login">Login</a>
-          <a href="signup">Signup</a>
+            <a href="login">Login</a>
+            <a href="signup">Signup</a>
           </>
         )}
-        
       </nav>
     </header>
   );

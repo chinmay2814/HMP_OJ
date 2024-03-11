@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins;wght@300;400;500;600;700;800;900&display=swap");
+
+body-components {
+  line-height: 0.8;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-shadow: 2px black;
+  width: 100%;
+  padding: 10px 100px; /* Adjusted padding to reduce header height */
+  background: transparent;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-self: space-between;
+  align-items: center;
+  z-index: 99;
+  height: 5%;
+}
+
+.navigation a {
+  position: relative;
+  font-size: 1.1em;
+  text-shadow: 2px black;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+}
+
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: black;
+  border-radius: 5px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+
+.navigation a:hover::after {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+  width: 130px;
+  text-shadow: 2px black;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #333;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: 0.5s;
+}
+
+.navigation .btnLogin-popup:hover {
+  background: #fff;
+  color: #162938;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.first {
+  text-shadow: 2px black;
+  text-align: center;
+  color: black;
+  display: block;
+}
+
+.headin {
+  text-shadow: 2px black;
+  word-spacing: 10px;
+  letter-spacing: 5px;
+  line-height: 1.8;
+  text-align: center;
+  color: black;
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+p {
+  text-shadow: 2px black;
+  word-spacing: 10px;
+  letter-spacing: 5px;
+  line-height: 1.8;
+  text-align: center;
+  background-color: darkkhaki;
+  color: black;
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin: 20px;
+}
+
+.grid-item {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
