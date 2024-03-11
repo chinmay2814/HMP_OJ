@@ -16,23 +16,27 @@ function Header() {
   }
   return (
     <header className="body-components">
-      <h2 class="first">HMP OJ</h2>
-      <nav class="navigation">
-        <a href="#">Home</a>
-        <a href="#">Practice</a>
-        <a href="#">Contest</a>
-        <a href="#">Learn</a>
-        {storedUser ? (
-          <>
-            <a href="#">{userName}</a>
-            <a href="#">Logout</a>
-          </>
-        ) : (
-          <>
-            <a href="login">Login</a>
-            <a href="signup">Signup</a>
-          </>
-        )}
+      <h2 className="first">HMP OJ</h2>
+      <nav className="navigation">
+        <div className="nav-left">
+          <a href="#">Home</a>
+          <a href="#">Practice</a>
+          <a href="#">Contest</a>
+          <a href="#">Learn</a>
+        </div>
+        <div className="nav-right">
+          {storedUser ? (
+            <>
+              <a href="#">{userName}</a>
+              <a href="#">Logout</a>
+            </>
+          ) : (
+            <>
+              <a href="login">Login</a>
+              <a href="signup">Signup</a>
+            </>
+          )}
+        </div>
       </nav>
     </header>
   );

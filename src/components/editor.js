@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "./components.css"; // Import your custom styles
-import "codemirror/theme/ambiance.css"; // or any other dark theme
-import "codemirror/mode/javascript/javascript";
+import "codemirror/theme/gruvbox-dark.css";
+import "codemirror/mode/clike/clike";
 import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets";
 
@@ -15,8 +15,8 @@ const Editor = ({ value, onChange }) => {
     editorRef.current = CodeMirror.fromTextArea(
       document.getElementById("editorRef"),
       {
-        mode: { name: "javascript", json: true },
-        theme: "ambiance", // or any other dark theme
+        mode: "text/x-c++src",
+        theme: "gruvbox-dark", // or any other dark theme
         autoCloseTags: true,
         autoCloseBrackets: true,
         lineNumbers: true,
