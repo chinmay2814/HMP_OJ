@@ -13,6 +13,7 @@ function Header() {
     const userData = JSON.parse(storedUser);
     // Now you can use the user data as needed
     userName = userData.user.userName;
+
     console.log("User :", userName);
   } else {
     console.log("not logged in");
