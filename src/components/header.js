@@ -1,10 +1,11 @@
-// Header.js
-import React from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./header.css";
-import LoginPage from "../Pages/LoginPage";
+import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function Header() {
+  const [click, setClick] = useState(false);
   let userName = "";
   const storedUser = localStorage.getItem("user");
   const navigate = useNavigate();
@@ -17,65 +18,123 @@ function Header() {
     console.log("not logged in");
     // User data not found in localStorage, handle accordingly
   }
-  const homeclick=()=>
-  {
-    navigate("/");
-  }
-  const loginclick=()=>
-  {
+
+  const loginclick = () => {
     navigate("/login");
-  }
-  const signupclick=()=>
-  {
+  };
+  const signupclick = () => {
     navigate("/signup");
-  }
-  const handleLogout=async ()=>
-  {
+  };
+  const handleLogout = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/logout");
-      if(response.status)
-      {
+      if (response.status) {
         localStorage.removeItem("user");
         navigate("/");
-        storedUser=null;
-        
-      }
-      else
-      {
+        storedUser = null;
+      } else {
         console.log("logout failed");
       }
+    } catch (error) {
+      console.log("error:", error);
     }
-    catch(error)
-    {
-      console.log("error:",error);
-    }
-    
-  }
+  };
+  const handleClick = () => setClick(!click);
   return (
-    <header className="body-components">
-      <h2 className="first">HMP OJ</h2>
-      <nav className="navigation">
-        <div className="nav-left">
-          <a onClick={homeclick}>Home</a>
-          <a href="#">Practice</a>
-          <a href="#">Contest</a>
-          <a href="#">Learn</a>
-        </div>
-        <div className="nav-right">
-          {storedUser ? (
-            <>
-              <a href="#">{userName}</a>
-              <a onClick={handleLogout}>Logout</a>
-            </>
-          ) : (
-            <>
-              <a onClick={loginclick}>Login</a>
-              <a onClick={signupclick}>Signup</a>
-            </>
-          )}
+    <>
+      <nav className="navbar">
+        <div className="nav-container">
+          <NavLink exact to="/" className="nav-logo">
+            <span>HMP OJ</span>
+            {/* <i className="fas fa-code"></i> */}
+            <span className="icon">
+              <CodeIcon />
+            </span>
+          </NavLink>
+
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/about"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Practice
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/blog"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Contest
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/contact"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Learn
+              </NavLink>
+            </li>
+
+            {storedUser ? (
+              <>
+                <li className="nav-item nav-links nav-right">{userName}</li>
+                <li className="nav-item nav-links " onClick={handleLogout}>
+                  Logout
+                </li>
+              </>
+            ) : (
+              <>
+                <li
+                  className="nav-item nav-links nav-right"
+                  onClick={loginclick}
+                >
+                  Login
+                </li>
+                <li className="nav-item nav-links" onClick={signupclick}>
+                  Signup
+                </li>
+              </>
+            )}
+          </ul>
+          <div className="nav-icon" onClick={handleClick}>
+            {/* <i className={click ? "fas fa-times" : "fas fa-bars"}></i> */}
+
+            {click ? (
+              <span className="icon">
+                <HamburgetMenuClose />{" "}
+              </span>
+            ) : (
+              <span className="icon">
+                <HamburgetMenuOpen />
+              </span>
+            )}
+          </div>
         </div>
       </nav>
-    </header>
+    </>
   );
 }
 

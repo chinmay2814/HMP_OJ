@@ -1,5 +1,5 @@
 .full {
-  margin-top: 5%;
+  margin-top: 5vw;
   background-size: cover;
   background-position: center;
 }
@@ -9,12 +9,12 @@
   align-items: stretch;
   align-content: space-around;
   flex-wrap: row wrap;
-  height: 300px;
+  height: 25vw;
 }
 .grid-item1 {
   background-color: khaki;
   width: 30%;
-  margin: 10px;
+  margin: 1vw;
   text-align: center;
   line-height: 75px;
   font-size: 30px;
@@ -24,7 +24,7 @@
 .grid-item2 {
   background-color: khaki;
   width: 30%;
-  margin: 10px;
+  margin: 1vw;
   text-align: center;
   line-height: 75px;
   font-size: 30px;
@@ -37,12 +37,12 @@
   align-items: stretch;
   align-content: space-around;
   flex-wrap: row wrap;
-  height: 300px;
+  height: 25vw;
 }
 .grid-item3 {
   background-color: khaki;
   width: 30%;
-  margin: 10px;
+  margin: 1vw;
   text-align: center;
   line-height: 75px;
   font-size: 30px;
@@ -52,13 +52,13 @@
 .grid-item4 {
   background-color: khaki;
   width: 30%;
-  margin: 10px;
+  margin: 1vw;
   text-align: center;
   line-height: 75px;
   font-size: 30px;
   border-radius: 12px;
 }
-.para {
-  background-color: khaki;
-  font-size: medium;
+.hh {
+  margin: 1vw;
+  font-size: 3vw;
 }
