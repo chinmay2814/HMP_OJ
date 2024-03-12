@@ -37,8 +37,16 @@ const userSchema = new mongoose.Schema(
         minlength: [6, "password must have at least (6) characters"],
       },
   
-      //jobsHistory: [jobsHistorySchema],
-  
+      //extra data
+      questionsSolved: {
+        type: Number,
+        default: 0,
+      },
+      pointsEarned: {
+        type: Number,
+        default: 0,
+      },
+    
       role: {
         type: Number,
         default: 0,
