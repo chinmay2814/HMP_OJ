@@ -16,29 +16,26 @@ const Homepage = () => {
   }
 
   return (
-    <>
+    <div className="homebody">
       <Header />
+      <h1 className="welcometext">
+        Embark on your coding<br></br> adventure today .
+      </h1>
       <div class="full">
-        <div className="grid-container1">
-          <div className="grid-item1">
-            <h6 className="hh">Problemset</h6>
-          </div>
-          <div className="grid-item2">
-            <h6 className="hh">Contest</h6>
-          </div>
-        </div>
-        <div className="grid-container2">
-          <div className="grid-item3">
-            <h6 className="hh">Topicwise practice</h6>
-          </div>
-          <div className="grid-item4">
-            <h6 className="hh">Random Problem</h6>
-          </div>
+        <div className="links">
+          <h6 id="hh6">Start Coding</h6>
+          <div class="spacer"></div>
+          <div className="linksinside"></div>
+          <div className="linksinside"></div>
+          <div className="linksinside"></div>
         </div>
       </div>
-      <LeaderboardComponent />
+      <div className="lbbox">
+        <LeaderboardComponent />
+      </div>
+
       <Footer />
-    </>
+    </div>
   );
 };
 
