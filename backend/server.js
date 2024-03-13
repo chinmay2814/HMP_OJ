@@ -19,6 +19,8 @@ require("dotenv").config();
 //import Routes
 const authRoutes=require("./routes/authRoutes");
 const  userRoutes=require("./routes/userRoutes");
+//const problemTypeRoutes=require("./routes/problemTypeRoutes.js");
+const problemRoutes=require("./routes/problemRoutes.js");
 
 // app.get('/', (req, res) => {
 //   res.send('Hello, World!');
@@ -54,6 +56,8 @@ app.get;
 //routes middleware
 app.use('/api',authRoutes);
 app.use("/api",userRoutes);
+//app.use("/api",problemTypeRoutes);
+app.use("/api",problemRoutes);
 
 // //api for comilation
 // const axios = require('axios');
