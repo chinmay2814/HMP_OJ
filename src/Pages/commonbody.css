@@ -1,64 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 .full {
-  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-size: cover;
   background-position: center;
 }
-.grid-container1 {
+.homebody {
+  background: linear-gradient(to bottom, rgb(239, 209, 160), white);
+  background-color: yellow; /* Fallback color */
+  /* Ensure full height of viewport */
+  height: 100vh;
+
+  /* Additional styling */
+  color: rgb(59, 42, 14); /* Text color */
+
+  font-family: Outfit, sans-serif;
+}
+.welcometext {
+  margin: 5vw;
+  padding: 1vh;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: italic;
+}
+.links {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  align-content: space-around;
-  flex-wrap: row wrap;
-  height: 300px;
-}
-.grid-item1 {
-  background-color: khaki;
-  width: 30%;
-  margin: 10px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-  border-radius: 12px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: flex-start;
+  /* Align items to the start */
+  align-items: center;
+  width: 80%;
+  background-color: rgb(255, 255, 255);
+  height: 50vh;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.grid-item2 {
-  background-color: khaki;
-  width: 30%;
-  margin: 10px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-  border-radius: 12px;
+.spacer {
+  flex-shrink: 0; /* Prevent the spacer from shrinking */
+  width: 10px; /* Adjust the width as needed */
 }
 
-.grid-container2 {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  align-content: space-around;
-  flex-wrap: row wrap;
-  height: 300px;
-}
-.grid-item3 {
-  background-color: khaki;
-  width: 30%;
-  margin: 10px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-  border-radius: 12px;
+.linksinside {
+  width: 250px;
+  flex-shrink: 0;
+  height: 80%;
+  margin: 2vw;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 }
 
-.grid-item4 {
-  background-color: khaki;
-  width: 30%;
-  margin: 10px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-  border-radius: 12px;
+@media (min-width: 769px) {
+  .links {
+    overflow-x: visible;
+    justify-content: center;
+  }
+  .linksinside {
+    width: 20%;
+  }
 }
-.para {
-  background-color: khaki;
-  font-size: medium;
+
+#hh6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2vh;
+  margin-bottom: 5vh;
+  width: 100%;
+  text-align: left;
+}
+.lbbox {
+  width: 100%;
+  background-color: rgb(39, 15, 15);
 }

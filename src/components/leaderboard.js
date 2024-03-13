@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./leaderboard.css";
 
 function LeaderboardComponent() {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,9 @@ function LeaderboardComponent() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/leaderboard");
+        const response = await axios.get(
+          "http://localhost:5000/api/leaderboard"
+        );
         setUsers(response.data.users);
         setLoading(false);
       } catch (error) {
@@ -29,30 +32,31 @@ function LeaderboardComponent() {
     return <div>Error: {error}</div>;
   }
 
-  console.log("hi", users); // Log the current state of users after it has been updated
-
   return (
-    <div>
-      <h1>Leaderboard</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Points Earned</th>
-            <th>Problems Solved</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            
-            <tr key={user._id}>
-              <td>{user.userName}</td>
-              <td>{user.userName}</td>
-              <td>{user.userName}</td>
+    <div className="leaderboard-container">
+      <h1 className="leaderboard-heading">Leaderboard</h1>
+      <div className="leaderboard-table-container">
+        <table className="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <th>Username</th>
+              <th>Points Earned</th>
+              <th>Problems Solved</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user._id}>
+                <td>{index + 1}</td> {/* Serial number column */}
+                <td>{user.userName}</td>
+                <td>{user.points}</td>
+                <td>{user.problemsSolved}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

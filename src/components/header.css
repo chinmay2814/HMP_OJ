@@ -1,133 +1,152 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins;wght@300;400;500;600;700;800;900&display=swap");
-
-body-components {
-  line-height: 0.8;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  text-shadow: 2px black;
-  width: 100%;
-  padding: 10px 100px; /* Adjusted padding to reduce header height */
-  background: transparent;
+.navbar {
+  background-color: transparent;
   backdrop-filter: blur(20px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  height: 8vh;
   display: flex;
-  justify-self: space-between;
   align-items: center;
-  z-index: 99;
-  height: 5%;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
-.navigation a {
-  position: relative;
-  font-size: 1.1em;
-  text-shadow: 2px black;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 40px;
-}
+.nav-container {
+  display: flex;
 
-.navigation a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
+  align-items: center;
+  height: 80px;
   width: 100%;
-  height: 3px;
-  background: black;
-  border-radius: 5px;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform 0.5s;
+  max-width: 1500px;
+  position: relative;
 }
 
-.navigation a:hover::after {
-  transform-origin: left;
-  transform: scaleX(1);
-}
-
-.navigation .btnLogin-popup {
-  width: 130px;
-  text-shadow: 2px black;
-  height: 50px;
-  background: transparent;
-  border: 2px solid #333;
-  outline: none;
-  border-radius: 6px;
+.nav-logo {
+  color: #f5b921;
+  align-items: center;
+  margin: auto;
   cursor: pointer;
-  font-size: 1.1em;
-  color: #fff;
-  font-weight: 500;
-  margin-left: 40px;
-  transition: 0.5s;
+  text-decoration: none;
+  font-size: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
-.navigation .btnLogin-popup:hover {
-  background: #fff;
-  color: #162938;
+.nav-logo .icon {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  margin-left: 16px;
 }
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
-.first {
-  text-shadow: 2px black;
+.nav-menu {
+  display: flex;
+  list-style: none;
   text-align: center;
-  color: black;
+  margin-right: 2rem;
+}
+
+.nav-links {
+  color: rgb(122, 13, 13);
+  text-decoration: none;
+  height: 100%;
+  border-bottom: 3px solid transparent;
+}
+/* .fa-code {
+  margin-left: 1rem;
+} */
+
+.nav-item {
+  line-height: 40px;
+  margin-right: 1rem;
+}
+
+.nav-item:after {
+  content: "";
   display: block;
+  height: 3px;
+  width: 0;
+  background: transparent;
+  transition: width 0.7s ease, background-color 0.5s ease;
 }
 
-.headin {
-  text-shadow: 2px black;
-  word-spacing: 10px;
-  letter-spacing: 5px;
-  line-height: 1.8;
-  text-align: center;
-  color: black;
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 0;
-  margin-right: 0;
+.nav-item:hover:after {
+  width: 100%;
+  background: #ffdd40;
 }
 
-p {
-  text-shadow: 2px black;
-  word-spacing: 10px;
-  letter-spacing: 5px;
-  line-height: 1.8;
-  text-align: center;
-  background-color: darkkhaki;
-  color: black;
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 0;
-  margin-right: 0;
+.nav-item .active {
+  color: #ffdd40;
+  border: 1px solid #ffdd40;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
-  margin: 20px;
+.nav-icon {
+  display: none;
+  color: #f5b921;
 }
 
-.grid-item {
-  background-color: #f0f0f0;
-  padding: 20px;
-  text-align: center;
+.nav-icon .icon {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+}
+
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    border-top: 1pxsolid #fff;
+    position: absolute;
+    top: 7vh;
+    left: -110%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav-menu.active {
+    background: #121313;
+    top: 7vh;
+    left: 0px;
+    opacity: 1;
+    transition: all 0.7s ease;
+    z-index: 0;
+  }
+  .nav-item .active {
+    color: #ffdd40;
+    border: none;
+  }
+  .nav-links {
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-logo .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .nav-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-100%, -50%);
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    color: #ffdd40;
+  }
+}
+.nav-right {
+  cursor: pointer;
+  display: flex;
+  right: 1vw;
+  margin-left: 20vw;
+}
+a {
+  margin: 10px;
 }

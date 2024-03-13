@@ -1,11 +1,11 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const passport = require("passport");
 // Import dotenv package
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 // Specify the path to the .env file
-const path = require('path');
-const envPath = path.join(__dirname, '..', '..', '.env'); // Construct the path to .env file
+const path = require("path");
+const envPath = path.join(__dirname, "..", "..", ".env"); // Construct the path to .env file
 
 // Load environment variables from the .env file
 dotenv.config({ path: envPath });
@@ -15,7 +15,7 @@ passport.use(
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "/api/auth/success",
-      passReqToCallback: true
+      passReqToCallback: true,
     },
     function (accessToken, refreshToken, profile, callback) {
       return done(err, profile);
@@ -29,8 +29,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
-
-
 const ErrorResponse = require("../utils/errorResponse");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModels");
@@ -45,7 +43,7 @@ exports.isAuthenticated = async (req, res, next) => {
 
   try {
     // Verify token
-    const jkey="jwtPrivateKey";
+    const jkey = "jwtPrivateKey";
     const decoded = jwt.verify(token, jkey);
     req.user = await User.findById(decoded.id);
     next();
@@ -56,8 +54,8 @@ exports.isAuthenticated = async (req, res, next) => {
 
 //middleware for admin
 exports.isAdmin = (req, res, next) => {
-    if (req.user.role === 0) {
-      return next(new ErrorResponse("Access denied, you must an admin", 401));
-    }
-    next();
-  };
+  if (req.user.role === 0) {
+    return next(new ErrorResponse("Access denied, you must an admin", 401));
+  }
+  next();
+};

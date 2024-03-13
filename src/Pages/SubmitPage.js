@@ -5,6 +5,7 @@ import "./submitPage.css";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import LoadingComponent from "../components/loading";
+import Footer from "../components/footer";
 function SubmissionPage() {
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("");
@@ -29,7 +30,15 @@ function SubmissionPage() {
     console.log("Code:", code);
     console.log("Language:", language);
     console.log("Problem:", problem);
-
+    if (language === "cpp") {
+      setLanguage(52);
+    }
+    if (language === "java") {
+      setLanguage(91);
+    }
+    if (language === "python") {
+      setLanguage(71);
+    }
     const exout = "7";
 
     const options = {
@@ -46,7 +55,7 @@ function SubmissionPage() {
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       data: {
-        language_id: 52,
+        language_id: language,
         source_code: code,
         stdin: "1\n8 2 3 \n",
         expected_output: "Barbossa\n",
@@ -93,7 +102,6 @@ function SubmissionPage() {
               <option value="cpp">C++</option>
               <option value="java">Java</option>
               <option value="python">Python</option>
-              {/* Add more language options as needed */}
             </select>
           </>
           <>
@@ -116,6 +124,7 @@ function SubmissionPage() {
           Submit
         </button>
       </div>
+      <Footer />
     </>
   );
 }
