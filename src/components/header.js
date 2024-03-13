@@ -4,6 +4,7 @@ import "./header.css";
 import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function Header() {
   const [click, setClick] = useState(false);
   let userName = "";
@@ -31,6 +32,7 @@ function Header() {
       const response = await axios.get("http://localhost:5000/api/logout");
       if (response.status) {
         localStorage.removeItem("user");
+        toast.info("Logout successful");
         navigate("/");
         storedUser = null;
       } else {

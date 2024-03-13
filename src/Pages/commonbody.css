@@ -10,12 +10,8 @@
 .homebody {
   background: linear-gradient(to bottom, rgb(239, 209, 160), white);
   background-color: yellow; /* Fallback color */
-  /* Ensure full height of viewport */
   height: 100vh;
-
-  /* Additional styling */
   color: rgb(59, 42, 14); /* Text color */
-
   font-family: Outfit, sans-serif;
 }
 .welcometext {
@@ -24,6 +20,7 @@
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
+  font-size: 5vw;
   font-style: italic;
 }
 .links {
