@@ -77,7 +77,7 @@ exports.updatePoints = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { isAccepted, difficulty, problemId } = req.body;
-
+    
     let pointsToAdd = 0;
     let pointsToRemove = 0;
 
