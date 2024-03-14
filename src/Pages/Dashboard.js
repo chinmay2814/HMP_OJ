@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import LoadingComponent from "../components/loading";
 const storedUser = localStorage.getItem("user");
 const userData = JSON.parse(storedUser);
 const Dashboard = () => {
@@ -42,7 +43,7 @@ const Dashboard = () => {
     <Header/>
     <div>
       {loading ? (
-        <p>Loading...</p>
+        <LoadingComponent/>
       ) : userData ? (
         <div className="container">
           <div className="profile">
