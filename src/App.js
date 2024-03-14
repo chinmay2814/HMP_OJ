@@ -17,7 +17,10 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<SignupPage />}></Route>
           <Route path="/" element={<Homepage />}></Route>
-          <Route path="/submit" element={<SubmissionPage />}></Route>
+          <Route
+            path={`/submit/:problemid`}
+            element={<SubmissionPage />}
+          ></Route>
           <Route path={`/profile/:username`} element={<Dashboard />}></Route>
           <Route path="/problemset" element={<ProblemSet />}></Route>
           <Route path={`/problem/:problemid`} element={<ProblemPage />}></Route>

@@ -4,12 +4,16 @@ import "../CSS/ProblemPage.css"; // Import CSS file for styling
 import LoadingComponent from "../components/loading";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const ProblemPage = () => {
+  const nav = useNavigate();
   const [problem, setProblem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const _id = useParams().problemid;
-
+  const handleSubmit = () => {
+    nav(`/submit/${_id}`);
+  };
   console.log(_id);
   useEffect(() => {
     const fetchProblem = async () => {
@@ -65,6 +69,9 @@ const ProblemPage = () => {
           </div>
         </main>
       </div>
+      <button className="submitbtn" onClick={handleSubmit}>
+        Submit Code
+      </button>
     </>
   );
 };
