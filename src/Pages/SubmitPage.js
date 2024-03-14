@@ -55,10 +55,10 @@ function SubmissionPage() {
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       data: {
-        language_id: language,
+        language_id: 52,
         source_code: code,
-        stdin: "1\n8 2 3 \n",
-        expected_output: "Barbossa\n",
+        stdin: "2 3",
+        expected_output: "5",
       },
     };
 

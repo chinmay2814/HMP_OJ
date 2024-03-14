@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   font-size: 1.2rem;
+
   position: sticky;
   top: 0;
   z-index: 20;
@@ -52,6 +53,7 @@
   color: rgb(122, 13, 13);
   text-decoration: none;
   height: 100%;
+
   border-bottom: 3px solid transparent;
 }
 /* .fa-code {
@@ -74,12 +76,12 @@
 
 .nav-item:hover:after {
   width: 100%;
-  background: #ffdd40;
+  background: #323232;
 }
 
 .nav-item .active {
-  color: #ffdd40;
-  border: 1px solid #ffdd40;
+  color: #0d0b02;
+  font-style: italic;
 }
 
 .nav-icon {

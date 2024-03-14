@@ -42,6 +42,9 @@ function Header() {
       console.log("error:", error);
     }
   };
+  const handleUserClick = () => {
+    navigate(`/profile/${userName}`);
+  };
   const handleClick = () => setClick(!click);
   return (
     <>
@@ -103,7 +106,12 @@ function Header() {
 
             {storedUser ? (
               <>
-                <li className="nav-item nav-links nav-right">{userName}</li>
+                <li
+                  className="nav-item nav-links nav-right"
+                  onClick={handleUserClick}
+                >
+                  {userName}
+                </li>
                 <li className="nav-item nav-links " onClick={handleLogout}>
                   Logout
                 </li>

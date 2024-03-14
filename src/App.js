@@ -8,15 +8,7 @@ import Dashboard from "./Pages/Dashboard";
 import ProblemSet from "./Pages/ProblemSet";
 import DefaultPage from "./Pages/Default";
 import ProblemPage from "./Pages/ProblemPage";
-const storedUser = localStorage.getItem("user");
-const userData = JSON.parse(storedUser);
 
-let userName;
-if (userData && userData.user && userData.user.userName != null) {
-  userName = userData.user.userName;
-} else {
-  userName = " ";
-}
 function App() {
   return (
     <>
@@ -26,7 +18,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />}></Route>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/submit" element={<SubmissionPage />}></Route>
-          <Route path={`/profile/${userName}`} element={<Dashboard />}></Route>
+          <Route path={`/profile/:username`} element={<Dashboard />}></Route>
           <Route path="/problemset" element={<ProblemSet />}></Route>
           <Route path={`/problem/:problemid`} element={<ProblemPage />}></Route>
           <Route path="*" element={<DefaultPage />} />
