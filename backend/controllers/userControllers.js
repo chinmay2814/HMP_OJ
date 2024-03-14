@@ -1,4 +1,5 @@
 const User = require("../models/userModels");
+const Problem=require("../models/problemModel");
 const ErrorResponse = require("../utils/errorResponse");
 
 //load all users
@@ -76,8 +77,19 @@ exports.deleteUser = async (req, res, next) => {
 exports.updatePoints = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { isAccepted, difficulty, problemId } = req.body;
-    
+    const { isAccepted,problemId } = req.body;
+
+    // Fetch the problem from the database using the problemId
+    const problem = await Problem.findById(problemId);
+    if (!problem) {
+      return res.status(404).json({
+        success: false,
+        message: 'Problem not found',
+      });
+    }
+
+    const { difficulty } = problem;
+
     let pointsToAdd = 0;
     let pointsToRemove = 0;
 
