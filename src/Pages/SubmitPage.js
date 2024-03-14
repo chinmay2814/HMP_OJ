@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Editor from "../components/editor"; // Assuming your Editor component is located in '../components/Editor'
 import Header from "../components/header";
-import "./submitPage.css";
+import "../CSS/submitPage.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import LoadingComponent from "../components/loading";

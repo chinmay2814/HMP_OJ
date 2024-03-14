@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import "./LoginPage.css"; // Import CSS file
+import "../CSS/LoginPage.css";
 import Footer from "../components/footer";
 
 const LoginPage = () => {

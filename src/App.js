@@ -1,12 +1,16 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage";
 import SignupPage from "./Pages/SignupPage";
 import Homepage from "./Pages/HomePage";
 import SubmissionPage from "./Pages/SubmitPage";
 import Dashboard from "./Pages/Dashboard";
+import ProblemSet from "./Pages/ProblemSet";
+import DefaultPage from "./Pages/Default";
+import ProblemPage from "./Pages/ProblemPage";
 const storedUser = localStorage.getItem("user");
 const userData = JSON.parse(storedUser);
+
 let userName;
 if (userData && userData.user && userData.user.userName != null) {
   userName = userData.user.userName;
@@ -14,7 +18,6 @@ if (userData && userData.user && userData.user.userName != null) {
   userName = " ";
 }
 function App() {
-  console.log("ssss", );
   return (
     <>
       <BrowserRouter>
@@ -23,10 +26,10 @@ function App() {
           <Route path="/signup" element={<SignupPage />}></Route>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/submit" element={<SubmissionPage />}></Route>
-          <Route
-            path={`/profile/${userName}`}
-            element={<Dashboard />}
-          ></Route>
+          <Route path={`/profile/${userName}`} element={<Dashboard />}></Route>
+          <Route path="/problemset" element={<ProblemSet />}></Route>
+          <Route path={`/problem/:problemid`} element={<ProblemPage />}></Route>
+          <Route path="*" element={<DefaultPage />} />
         </Routes>
       </BrowserRouter>
     </>

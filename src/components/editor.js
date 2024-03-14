@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
-import "./components.css"; // Import your custom styles
-import "codemirror/theme/gruvbox-dark.css";
+import "../CSS/components.css";
+import "codemirror/theme/gruvbox-dark.css"; // Import your theme
 import "codemirror/mode/clike/clike";
 import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets";

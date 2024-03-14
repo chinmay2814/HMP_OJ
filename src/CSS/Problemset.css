@@ -1,0 +1,30 @@
+/* Problem Set Table Styles */
+.problemset-table-container {
+  overflow-x: auto;
+}
+
+.problemset-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.problemset-table th,
+.problemset-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.problemset-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Alternating Row Colors */
+.problemset-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.problemset-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}

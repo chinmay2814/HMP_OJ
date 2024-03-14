@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./leaderboard.css";
+import "../CSS/leaderboard.css";
+import LoadingComponent from "./loading";
 
 function LeaderboardComponent() {
   const [users, setUsers] = useState([]);
@@ -25,7 +26,7 @@ function LeaderboardComponent() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingComponent />;
   }
 
   if (error) {

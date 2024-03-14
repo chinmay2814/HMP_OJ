@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./header.css";
+import "../CSS/header.css";
 import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +27,7 @@ function Header() {
   const signupclick = () => {
     navigate("/signup");
   };
+  const handleUserclick = () => {};
   const handleLogout = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/logout");
@@ -70,7 +71,7 @@ function Header() {
             <li className="nav-item">
               <NavLink
                 exact
-                to="/about"
+                to="/problemset"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
@@ -103,7 +104,12 @@ function Header() {
 
             {storedUser ? (
               <>
-                <li className="nav-item nav-links nav-right">{userName}</li>
+                <li
+                  className="nav-item nav-links nav-right"
+                  onClick={handleUserclick}
+                >
+                  {userName}
+                </li>
                 <li className="nav-item nav-links " onClick={handleLogout}>
                   Logout
                 </li>
