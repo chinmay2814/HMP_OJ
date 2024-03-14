@@ -83,6 +83,7 @@ exports.singleProblem = async (req, res, next) => {
         res.status(200).json({
           success: true,
           testcases,
+          timeLimit: problem.timeLimit
         });
         next();
       } catch (error) {

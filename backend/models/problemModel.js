@@ -10,10 +10,10 @@
         maxlength: 30,
         },
         timeLimit: {
-        type: String,
-        trim: true,
+        type: Number,
+        
         required: [true, "Time Limit is required"],
-        maxlength: 20,
+        maxlength: 2,
         },
         difficulty: {
         type: String,

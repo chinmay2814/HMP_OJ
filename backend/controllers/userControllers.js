@@ -76,12 +76,12 @@ exports.deleteUser = async (req, res, next) => {
 exports.updatePoints = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { isCorrect, difficulty, problemId } = req.body;
+    const { isAccepted, difficulty, problemId } = req.body;
 
     let pointsToAdd = 0;
     let pointsToRemove = 0;
 
-    if (isCorrect) {
+    if (isAccepted) {
       switch (difficulty) {
         case "hard":
           pointsToAdd = 30;
@@ -103,11 +103,11 @@ exports.updatePoints = async (req, res, next) => {
       id,
       {
         $inc: {
-          questionsSolved: isCorrect ? 1 : 0,
-          pointsEarned: isCorrect ? pointsToAdd : -pointsToRemove,
+          questionsSolved: isAccepted ? 1 : 0,
+          pointsEarned: isAccepted ? pointsToAdd : -pointsToRemove,
         },
         $addToSet: {
-          solvedProblems: isCorrect ? problemId : null,
+          solvedProblems: isAccepted ? problemId : null,
         },
       },
       { new: true }
