@@ -3,7 +3,7 @@ import Editor from "../components/editor"; // Assuming your Editor component is 
 import Header from "../components/header";
 import "./submitPage.css";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import LoadingComponent from "../components/loading";
 import Footer from "../components/footer";
 function SubmissionPage() {
@@ -66,13 +66,15 @@ function SubmissionPage() {
       try {
         const response = await axios.request(options);
         console.log(response.data);
-        //console.log()
         if (response.data.stdout === response.data.expected_output) {
           console.log("toast");
-          toast.success("success");
+          toast.success("Correct output");
+        } else {
+          toast.error("wrong output");
         }
         console.log(response.data.stdout === response.data.expected_output); //prints the output of the program
       } catch (error) {
+        toast.warning("response not send, try again");
         console.error(error);
       }
       setIsLoading(false);

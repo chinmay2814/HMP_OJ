@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css"; // Import CSS file
 import Footer from "../components/footer";
@@ -31,21 +31,19 @@ const LoginPage = () => {
         userName,
         password,
       });
-
       if (response.status === 200) {
         const user = await response.data;
         // Handle successful login
         localStorage.setItem("user", JSON.stringify(user));
         console.log("Login successful:", user);
-
         toast.success("Login successful!");
         navigate("/");
       } else {
-        // Handle login failure
-
+        toast.info("Check your Credentials");
         console.error("Login failed");
       }
     } catch (error) {
+      toast.error("server error");
       console.error("Error:", error);
     }
   };
