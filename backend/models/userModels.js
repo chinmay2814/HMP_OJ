@@ -1,10 +1,12 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
+//const Problem=require("../models/problemModel");
+const mongoose=require('mongoose');
+const { ObjectId } = mongoose.Schema;
  //
  require('dotenv').config();
  
-const mongoose=require('mongoose');
+
 
 const userSchema = new mongoose.Schema(
     {
@@ -38,6 +40,10 @@ const userSchema = new mongoose.Schema(
       },
   
       //extra data
+      solvedProblems: {
+        type: [{ type: ObjectId, ref: "Problem" }],
+        default: [],
+      },
       questionsSolved: {
         type: Number,
         default: 0,

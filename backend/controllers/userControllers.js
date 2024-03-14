@@ -111,17 +111,22 @@ exports.updatePoints = async (req, res, next) => {
       pointsToRemove = 5;
     }
 
+    const updateQuery = {
+      $inc: {
+        questionsSolved: isAccepted ? 1 : 0,
+        pointsEarned: isAccepted ? pointsToAdd : -pointsToRemove,
+      },
+    };
+
+    if (isAccepted) {
+      updateQuery.$addToSet = {
+        solvedProblems: problemId,
+      };
+    }
+
     const user = await User.findByIdAndUpdate(
       id,
-      {
-        $inc: {
-          questionsSolved: isAccepted ? 1 : 0,
-          pointsEarned: isAccepted ? pointsToAdd : -pointsToRemove,
-        },
-        $addToSet: {
-          solvedProblems: isAccepted ? problemId : null,
-        },
-      },
+      updateQuery,
       { new: true }
     );
 
