@@ -88,6 +88,26 @@ exports.testProblem = async (req, res, next) => {
     return next(error);
   }
 };
+exports.testProblem = async (req, res, next) => {
+  try {
+    const problem = await Problem.findById(req.params.id).populate("testcases"); // Populate the testcases array with actual Testcase objects
+
+    // Extract the input and output fields from the populated testcases array
+    const testcases = problem.testcases.map((testcase) => ({
+      input: testcase.input,
+      output: testcase.output,
+    }));
+
+    res.status(200).json({
+      success: true,
+      testcases,
+      timeLimit: problem.timeLimit,
+    });
+    next();
+  } catch (error) {
+    return next(error);
+  }
+};
 
 //   //load all problem
 // exports.allProblems = async (req, res, next) => {

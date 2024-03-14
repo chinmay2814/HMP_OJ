@@ -11,6 +11,7 @@ const problemSchema = new mongoose.Schema(
     },
     timeLimit: {
       type: Number,
+
       required: [true, "Time Limit is required"],
       maxlength: 2,
     },
