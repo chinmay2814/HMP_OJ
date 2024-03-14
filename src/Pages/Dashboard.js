@@ -1,6 +1,8 @@
 import "./Dashboard.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "../components/header";
+import Footer from "../components/footer";
 const storedUser = localStorage.getItem("user");
 const userData = JSON.parse(storedUser);
 const Dashboard = () => {
@@ -36,6 +38,8 @@ const Dashboard = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div>
       {loading ? (
         <p>Loading...</p>
@@ -61,6 +65,8 @@ const Dashboard = () => {
       <div>Points Earned : {userData.user.points}</div>
       <div>{getTimePassed(userData.user.createdAt)}</div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
