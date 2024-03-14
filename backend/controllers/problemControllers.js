@@ -69,17 +69,55 @@ exports.singleProblem = async (req, res, next) => {
   };
 
 
-  //load all problem
-exports.allProblems = async (req, res, next) => {
-    //enable pagination
+//   //load all problem
+// exports.allProblems = async (req, res, next) => {
+//     //enable pagination
+//     const pageSize = 10;
+//     const page = Number(req.query.pageNumber) || 1;
+//     const count = await Problem.find({}).estimatedDocumentCount();
+  
+//     try {
+//       const problems = await Problem.find()
+//         .sort({ createdAt: -1 })
+//         .select("-password")
+//         .skip(pageSize * (page - 1))
+//         .limit(pageSize);
+  
+//       res.status(200).json({
+//         success: true,
+//         problems,
+//         page,
+//         pages: Math.ceil(count / pageSize),
+//         count,
+//       });
+//       next();
+//     } catch (error) {
+//       return next(error);
+//     }
+//   };
+
+  //load all problem based on diff,
+  exports.allProblems = async (req, res, next) => {
+    const { difficulty, problemType, pageNumber } = req.query;
     const pageSize = 10;
-    const page = Number(req.query.pageNumber) || 1;
-    const count = await Problem.find({}).estimatedDocumentCount();
+    const page = Number(pageNumber) || 1;
   
     try {
-      const problems = await Problem.find()
+      let query = Problem.find();
+  
+      if (difficulty) {
+        query = query.where('difficulty').equals(difficulty);
+      }
+  
+      if (problemType) {
+        query = query.where('problemType').equals(problemType);
+      }
+  
+      const count = await Problem.countDocuments(query);
+  
+      const problems = await query
         .sort({ createdAt: -1 })
-        .select("-password")
+        .select("title problemType difficulty")
         .skip(pageSize * (page - 1))
         .limit(pageSize);
   
@@ -95,3 +133,4 @@ exports.allProblems = async (req, res, next) => {
       return next(error);
     }
   };
+  
