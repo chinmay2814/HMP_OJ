@@ -42,21 +42,21 @@ exports.singleUser = async (req, res, next) => {
     }
   };
 
-//edit user
-  exports.editUser = async (req, res, next) => {
-    try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-      });
-      res.status(200).json({
-        success: true,
-        user,
-      });
-      next();
-    } catch (error) {
-      return next(error);
-    }
-  };
+  //edit user
+    exports.editUser = async (req, res, next) => {
+      try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+          new: true,
+        });
+        res.status(200).json({
+          success: true,
+          user,
+        });
+        next();
+      } catch (error) {
+        return next(error);
+      }
+    };
 
 //delete user
 exports.deleteUser = async (req, res, next) => {
@@ -71,3 +71,54 @@ exports.deleteUser = async (req, res, next) => {
       return next(error);
     }
   };
+
+//updatePoints
+exports.updatePoints = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { isCorrect, difficulty, problemId } = req.body;
+
+    let pointsToAdd = 0;
+    let pointsToRemove = 0;
+
+    if (isCorrect) {
+      switch (difficulty) {
+        case "hard":
+          pointsToAdd = 30;
+          break;
+        case "medium":
+          pointsToAdd = 20;
+          break;
+        case "easy":
+          pointsToAdd = 10;
+          break;
+        default:
+          break;
+      }
+    } else {
+      pointsToRemove = 5;
+    }
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        $inc: {
+          questionsSolved: isCorrect ? 1 : 0,
+          pointsEarned: isCorrect ? pointsToAdd : -pointsToRemove,
+        },
+        $addToSet: {
+          solvedProblems: isCorrect ? problemId : null,
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+    next();
+  } catch (error) {
+    return next(error);
+  }
+};
