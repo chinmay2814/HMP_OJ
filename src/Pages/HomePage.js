@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import LeaderboardComponent from "../components/leaderboard";
-import "./commonbody.css";
+import "../CSS/commonbody.css";
 
 const Homepage = () => {
   const storedUser = localStorage.getItem("user");

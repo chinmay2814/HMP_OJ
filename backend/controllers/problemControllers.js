@@ -1,50 +1,50 @@
 const User = require("../models/userModels");
-const Problem=require("../models/problemModel");
-const Testcase=require("../models/testcaseModel");
+const Problem = require("../models/problemModel");
+const Testcase = require("../models/testcaseModel");
 const ErrorResponse = require("../utils/errorResponse");
 
 // create a problem with multiple test cases
 exports.newproblem = async (req, res, next) => {
-    try {
-      // Extract test cases from the request body
-      const { testcases, ...problemData } = req.body;
-  
-      // Create the problem
-      const problem = await Problem.create(problemData);
-  
-      // Create the test cases and associate them with the problem
-      const createdTestcases = await Testcase.insertMany(
-        testcases.map((testcase) => ({ ...testcase, problem: problem._id }))
-      );
-  
-      // Add the IDs of the created test cases to the problem
-      problem.testcases = createdTestcases.map((testcase) => testcase._id);
-      await problem.save();
-  
-      res.status(200).json({
-        success: true,
-        problem,
-      });
-    } catch (error) {
-      next(error);
-    }
-  };
+  try {
+    // Extract test cases from the request body
+    const { testcases, ...problemData } = req.body;
+
+    // Create the problem
+    const problem = await Problem.create(problemData);
+
+    // Create the test cases and associate them with the problem
+    const createdTestcases = await Testcase.insertMany(
+      testcases.map((testcase) => ({ ...testcase, problem: problem._id }))
+    );
+
+    // Add the IDs of the created test cases to the problem
+    problem.testcases = createdTestcases.map((testcase) => testcase._id);
+    await problem.save();
+
+    res.status(200).json({
+      success: true,
+      problem,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 //   // create a problem with multiple test cases
 // exports.newproblem = async (req, res, next) => {
 //     try {
 //       const { testcases, ...problemData } = req.body;
 //       const userId = req.headers['user-id']; // Extract the user ID from the request headers
-  
+
 //       const problem = await Problem.create({ ...problemData, user: userId });
-  
+
 //       const createdTestcases = await Testcase.insertMany(
 //         testcases.map((testcase) => ({ ...testcase, problem: problem._id }))
 //       );
-  
+
 //       problem.testcases = createdTestcases.map((testcase) => testcase._id);
 //       await problem.save();
-  
+
 //       res.status(200).json({
 //         success: true,
 //         problem,

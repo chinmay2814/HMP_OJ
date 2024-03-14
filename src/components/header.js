@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./header.css";
+import "../CSS/header.css";
 import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function Header() {
   const [click, setClick] = useState(false);
   let userName = "";
@@ -31,6 +32,7 @@ function Header() {
       const response = await axios.get("http://localhost:5000/api/logout");
       if (response.status) {
         localStorage.removeItem("user");
+        toast.info("Logout successful");
         navigate("/");
         storedUser = null;
       } else {
@@ -39,6 +41,9 @@ function Header() {
     } catch (error) {
       console.log("error:", error);
     }
+  };
+  const handleUserClick = () => {
+    navigate(`/profile/${userName}`);
   };
   const handleClick = () => setClick(!click);
   return (
@@ -68,7 +73,7 @@ function Header() {
             <li className="nav-item">
               <NavLink
                 exact
-                to="/about"
+                to="/problemset"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
@@ -101,7 +106,12 @@ function Header() {
 
             {storedUser ? (
               <>
-                <li className="nav-item nav-links nav-right">{userName}</li>
+                <li
+                  className="nav-item nav-links nav-right"
+                  onClick={handleUserClick}
+                >
+                  {userName}
+                </li>
                 <li className="nav-item nav-links " onClick={handleLogout}>
                   Logout
                 </li>

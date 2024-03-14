@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import "./LoginPage.css";
+import "../CSS/LoginPage.css";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({

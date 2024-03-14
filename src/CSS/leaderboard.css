@@ -1,13 +1,16 @@
 /* General styling */
-.leaderboard-container {
-  margin: 20px;
-}
 .leaderboard-heading {
   font-size: 20px;
   color: wheat;
 }
+
+.leaderboard-table-container {
+  display: flex;
+  justify-content: center; /* Center the table horizontally */
+}
+
 .leaderboard-table {
-  width: 100%;
+  width: 60%;
   border-collapse: collapse;
   border-radius: 10px;
   overflow: hidden;

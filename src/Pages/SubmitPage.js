@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Editor from "../components/editor"; // Assuming your Editor component is located in '../components/Editor'
 import Header from "../components/header";
-import "./submitPage.css";
+import "../CSS/submitPage.css";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import LoadingComponent from "../components/loading";
 import Footer from "../components/footer";
 function SubmissionPage() {
@@ -55,10 +55,10 @@ function SubmissionPage() {
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       data: {
-        language_id: language,
+        language_id: 52,
         source_code: code,
-        stdin: "1\n8 2 3 \n",
-        expected_output: "Barbossa\n",
+        stdin: "2 3",
+        expected_output: "5",
       },
     };
 
@@ -66,13 +66,15 @@ function SubmissionPage() {
       try {
         const response = await axios.request(options);
         console.log(response.data);
-        //console.log()
         if (response.data.stdout === response.data.expected_output) {
           console.log("toast");
-          toast.success("success");
+          toast.success("Correct output");
+        } else {
+          toast.error("wrong output");
         }
         console.log(response.data.stdout === response.data.expected_output); //prints the output of the program
       } catch (error) {
+        toast.warning("response not send, try again");
         console.error(error);
       }
       setIsLoading(false);
