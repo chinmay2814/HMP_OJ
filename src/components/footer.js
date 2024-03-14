@@ -16,8 +16,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3>About Us</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget
-            sapien nec lorem consectetur vestibulum.
+          
           </p>
         </div>
         <div className="footer-section">

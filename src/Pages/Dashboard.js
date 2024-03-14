@@ -1,14 +1,15 @@
+import "./Dashboard.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "../components/header";
+import Footer from "../components/footer";
 import LoadingComponent from "../components/loading";
 const storedUser = localStorage.getItem("user");
 const userData = JSON.parse(storedUser);
-
-console.log("KAKAK", userData);
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(storedUser);
+  console.log(userData);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -26,45 +27,46 @@ const Dashboard = () => {
     fetchUser();
   }, []);
 
+  const getTimePassed = (createdAt) => {
+    const userCreatedAt = new Date(userData.user.createdAt);
+    const currentTime = new Date();
+
+    const timeDifference = currentTime.getTime() - userCreatedAt.getTime();
+    const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    return `User since ${daysPassed} days`;
+  };
+
   return (
-    <div>
-      {loading ? (
-        <LoadingComponent />
-      ) : userData ? (
-        <div>
-          {loading ? (
-            <LoadingComponent />
-          ) : (
-            <div>
-              <h1>User Dashboard</h1>
-              <div>
-                <p>
-                  <strong>Name:</strong> {userData.user.name}
-                </p>
-                <p>
-                  <strong>Username:</strong> {userData.user.userName}
-                </p>
-                <p>
-                  <strong>Email:</strong> {userData.user.email}
-                </p>
-                <p>
-                  <strong>Problems Solved:</strong>{" "}
-                  {userData.user.questionsSolved}
-                </p>
-                <p>
-                  <strong>Points Earned:</strong> {userData.user.pointsEarned}
-                </p>
-                <p>
-                  Last Seen :<h1 color="greeen">Online</h1>
-                </p>
+    <>
+      <Header />
+      <div>
+        {loading ? (
+          <LoadingComponent />
+        ) : userData ? (
+          <div className="container">
+            <div className="profile">
+              <div className="profile-image">
+                <img
+                  src={`https://robohash.org/${userData.user.name}?size=150x150`}
+                />
+              </div>
+              <div className="profile-info">
+                <h1>{userData.user.name}</h1>
+                <h3>{userData.user.userName}</h3>
+                <p>Email: {userData.user.email}</p>
               </div>
             </div>
-          )}
-        </div>
-      ) : (
-        <p>No user found</p>
-      )}
-    </div>
+          </div>
+        ) : (
+          <p>No user found</p>
+        )}
+        <div>Problem Solved : {userData.user.questionsSolved}</div>
+        <div>Points Earned : {userData.user.points}</div>
+        <div>{getTimePassed(userData.user.createdAt)}</div>
+      </div>
+      <Footer />
+    </>
   );
 };
 

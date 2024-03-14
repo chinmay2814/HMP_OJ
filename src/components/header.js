@@ -27,7 +27,6 @@ function Header() {
   const signupclick = () => {
     navigate("/signup");
   };
-  const handleUserclick = () => {};
   const handleLogout = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/logout");
@@ -104,12 +103,7 @@ function Header() {
 
             {storedUser ? (
               <>
-                <li
-                  className="nav-item nav-links nav-right"
-                  onClick={handleUserclick}
-                >
-                  {userName}
-                </li>
+                <li className="nav-item nav-links nav-right">{userName}</li>
                 <li className="nav-item nav-links " onClick={handleLogout}>
                   Logout
                 </li>
