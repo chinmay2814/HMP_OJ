@@ -51,8 +51,8 @@ function LeaderboardComponent() {
               <tr key={user._id}>
                 <td>{index + 1}</td> {/* Serial number column */}
                 <td>{user.userName}</td>
-                <td>{user.points}</td>
-                <td>{user.problemsSolved}</td>
+                <td>{user.pointsEarned}</td>
+                <td>{user.questionsSolved}</td>
               </tr>
             ))}
           </tbody>

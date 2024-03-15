@@ -1,5 +1,5 @@
 const User = require("../models/userModels");
-const Problem=require("../models/problemModel");
+const Problem = require("../models/problemModel");
 const ErrorResponse = require("../utils/errorResponse");
 
 //load all users
@@ -31,60 +31,61 @@ exports.allUsers = async (req, res, next) => {
 
 //show single user
 exports.singleUser = async (req, res, next) => {
-    try {
-      const user = await User.findById(req.params.id);
-      res.status(200).json({
-        success: true,
-        user,
-      });
-      next();
-    } catch (error) {
-      return next(error);
-    }
-  };
+  try {
+    const user = await User.findById(req.params.id);
+    res.status(200).json({
+      success: true,
+      user,
+    });
+    next();
+  } catch (error) {
+    return next(error);
+  }
+};
 
-  //edit user
-    exports.editUser = async (req, res, next) => {
-      try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-          new: true,
-        });
-        res.status(200).json({
-          success: true,
-          user,
-        });
-        next();
-      } catch (error) {
-        return next(error);
-      }
-    };
+//edit user
+exports.editUser = async (req, res, next) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json({
+      success: true,
+      user,
+    });
+    next();
+  } catch (error) {
+    return next(error);
+  }
+};
 
 //delete user
 exports.deleteUser = async (req, res, next) => {
-    try {
-      const user = await User.findByIdAndRemove(req.params.id);
-      res.status(200).json({
-        success: true,
-        message: "user deleted",
-      });
-      next();
-    } catch (error) {
-      return next(error);
-    }
-  };
+  try {
+    const user = await User.findByIdAndRemove(req.params.id);
+    res.status(200).json({
+      success: true,
+      message: "user deleted",
+    });
+    next();
+  } catch (error) {
+    return next(error);
+  }
+};
 
 //updatePoints
 exports.updatePoints = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { isAccepted,problemId } = req.body;
+    const { isAccepted, problemId } = req.body;
 
     // Fetch the problem from the database using the problemId
     const problem = await Problem.findById(problemId);
+    console.log(problemId);
     if (!problem) {
       return res.status(404).json({
         success: false,
-        message: 'Problem not found',
+        message: "Problem not found",
       });
     }
 

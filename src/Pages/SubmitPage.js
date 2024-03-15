@@ -17,6 +17,7 @@ function SubmissionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [resToken, setResToken] = useState([]);
   const [statusDescriptions, setStatusDescriptions] = useState([]);
+  const [response, setResponse] = useState(null);
   const _id = useParams().problemid;
 
   const handleCodeChange = (value) => {
@@ -121,9 +122,34 @@ function SubmissionPage() {
           const descriptions = response.data.submissions.map(
             (obj) => obj.status.description
           );
-
           setStatusDescriptions(descriptions);
-          console.log(descriptions, response);
+          console.log(descriptions);
+          var isAccepted = true;
+          descriptions.forEach((status) => {
+            if (status !== "Accepted") {
+              isAccepted = false;
+              return; // Exit the loop early once a status other than "Accepted" is found
+            }
+          });
+          if (isAccepted) {
+            toast.success("ALL TESTCASES PASSED");
+          } else {
+            toast.error("WRONG SUBMISSION");
+          }
+          try {
+            const storedUser = localStorage.getItem("user");
+            const userData = JSON.parse(storedUser);
+            const problemId = _id;
+            const response = await axios.put(
+              `http://localhost:5000/api/user/updatePoints/${userData.user._id}`,
+              { isAccepted, problemId }
+            );
+            setResponse(response.data);
+            console.log(response, "put");
+          } catch (error) {
+            setError(error.response.data.message || "An error occurred.");
+          }
+          console.log(isAccepted);
         } catch (error) {
           console.error(error);
         } finally {
@@ -139,41 +165,6 @@ function SubmissionPage() {
       getTokens();
     }
   }, [resToken]);
-  useEffect(() => {
-    // Count the number of accepted submissions
-    const updatePointsAPI = async (id, isAccepted, problemId) => {
-      try {
-        const response = await axios.put(
-          `http://localhost:5000/api/updatePoints/${id}`,
-          {
-            isAccepted,
-            problemId,
-          }
-        );
-        return response.data; // Return the data received from the API
-      } catch (error) {
-        throw error; // Throw the error to handle it in the calling function
-      }
-    };
-
-    // Check if testCases is not null or undefined
-    if (testCases && testCases.length > 0) {
-      const acceptedCount = statusDescriptions.filter(
-        (description) => description === "Accepted"
-      ).length;
-
-      // Log or use the count as needed
-      let isAccepted = false;
-      if (acceptedCount === testCases.length) {
-        toast.success("ALL TESTCASES PASSED");
-        isAccepted = true;
-      }
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-      console.log("Number of accepted submissions:", acceptedCount, storedUser);
-      // Call updatePointsAPI and await its execution
-      updatePointsAPI(storedUser._id, isAccepted, _id);
-    }
-  }, [statusDescriptions, testCases]);
 
   return (
     <>
