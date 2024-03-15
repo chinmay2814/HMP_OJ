@@ -1,6 +1,9 @@
 import "./Dashboard.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "font-awesome/css/font-awesome.min.css";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import LoadingComponent from "../components/loading";
@@ -34,7 +37,7 @@ const Dashboard = () => {
     const timeDifference = currentTime.getTime() - userCreatedAt.getTime();
     const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-    return `User since ${daysPassed} days`;
+    return `${daysPassed}`;
   };
 
   return (
@@ -44,26 +47,45 @@ const Dashboard = () => {
         {loading ? (
           <LoadingComponent />
         ) : userData ? (
-          <div className="container">
-            <div className="profile">
-              <div className="profile-image">
+          <div class="container mt-5 mb-5">
+            <div class="row no-gutters">
+              <div class="col-md-4 col-lg-4">
                 <img
-                  src={`https://robohash.org/${userData.user.name}?size=150x150`}
+                  src={`https://robohash.org/${userData.user.name}?size =300x300`}
                 />
               </div>
-              <div className="profile-info">
-                <h1>{userData.user.name}</h1>
-                <h3>{userData.user.userName}</h3>
-                <p>Email: {userData.user.email}</p>
+              <div class="col-md-8 col-lg-8">
+                <div class="d-flex flex-column">
+                  <div class="d-flex flex-row justify-content-between align-items-center p-5 bg-dark text-white">
+                    <h3 class="display-5">{userData.user.name}</h3>
+                    <div></div>
+                    <h5 class="display-10">{userData.user.userName}</h5>
+                  </div>
+
+                  <div class="p-3 bg-black text-white"></div>
+                  <div class="d-flex flex-row text-white">
+                    <div class="p-3 bg-primary text-center skill-block">
+                      <h6>User Since</h6>
+                      <h4>{userData.user.questionsSolved}</h4>
+                      <h6>days</h6>
+                    </div>
+                    <div class="p-3 bg-success text-center skill-block">
+                      <h6>Points Earned</h6>
+                      <div></div>
+                      <h4>{userData.user.pointsEarned}</h4>
+                    </div>
+                    <div class="p-3 bg-warning text-center skill-block">
+                      <h6>Problems Solved </h6>
+                      <h4>{getTimePassed(userData.user.createdAt)}</h4>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         ) : (
           <p>No user found</p>
         )}
-        <div>Problem Solved : {userData.user.questionsSolved}</div>
-        <div>Points Earned : {userData.user.points}</div>
-        <div>{getTimePassed(userData.user.createdAt)}</div>
       </div>
       <Footer />
     </>

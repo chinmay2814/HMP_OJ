@@ -11,6 +11,20 @@
   top: 0;
   z-index: 20;
 }
+.nav-icon-img {
+  width: 24%; /* Adjust the width as needed */
+  height: auto;
+  margin-right: 10%; /* Adjust spacing as needed */
+  margin-top: -14%; /* Adjust spacing as needed */
+  max-width: 300px; /* Limit maximum width to prevent overflowing */
+  align-self: center; /* Initially align the GIF to the center */
+}
+
+@media screen and (max-width: 960px) {
+  .nav-icon-img {
+    align-self: flex-start; /* Align the GIF to the top when screen size decreases */
+  }
+}
 
 .nav-container {
   display: flex;
