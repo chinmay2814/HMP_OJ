@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "../CSS/header.css";
 import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import axios from "axios";
+import codeIconGIF from "../images/HMP-OJ-unscreen.gif"; 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 function Header() {
@@ -51,10 +52,10 @@ function Header() {
       <nav className="navbar">
         <div className="nav-container">
           <NavLink exact to="/" className="nav-logo">
-            <span>HMP OJ</span>
+            {/* <span>HMP OJ</span> */}
             {/* <i className="fas fa-code"></i> */}
-            <span className="icon">
-              <CodeIcon />
+            <span >
+            <img src={codeIconGIF} alt="Code Icon" className="nav-icon-img"></img>
             </span>
           </NavLink>
 

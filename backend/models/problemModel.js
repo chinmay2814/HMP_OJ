@@ -63,10 +63,7 @@ const problemSchema = new mongoose.Schema(
       trim: true,
       required: [true, "Type is required"],
     },
-    solvedProblems: {
-      type: [{ type: ObjectId, ref: "Problem" }],
-      default: [],
-    },
+    
     user: {
       type: ObjectId,
       ref: "User",
