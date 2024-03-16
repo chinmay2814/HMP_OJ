@@ -17,9 +17,9 @@ function Header() {
     // Now you can use the user data as needed
     userName = userData.user.userName;
 
-    //console.log("User :", userName);
+    console.log("User :", userName);
   } else {
-    //console.log("not logged in");
+    console.log("not logged in");
     // User data not found in localStorage, handle accordingly
   }
 
@@ -73,7 +73,7 @@ function Header() {
                   to="/"
                   onClick={handleClick}
                   alt="Code Icon"
-                  class="h-14 w-13"
+                  class="h-12 w-auto"
                 />
               </a>
             </NavLink>
@@ -108,6 +108,16 @@ function Header() {
                       href="#"
                     >
                       Chat
+                    </a>
+                  </NavLink>
+                </li>
+                <li class="flex items-center h-full">
+                  <NavLink exact to="/blogs" onClick={handleClick}>
+                    <a
+                      class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
+                      href="#"
+                    >
+                      Blog
                     </a>
                   </NavLink>
                 </li>
@@ -154,7 +164,7 @@ function Header() {
                 </>
               )}
 
-              <div class="hidden cursor-pointer h-auto w-8" onClick={handleClick}>
+              <div class="md:hidden lg:hidden cursor-pointer h-auto w-8" onClick={handleClick}>
                 {/* <i className={click ? "fas fa-times" : "fas fa-bars"}></i> */}
 
                 {click ? (
