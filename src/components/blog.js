@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import LoadingComponent from "./loading";
 import { NavLink } from "react-router-dom";
+import LoadingComponent from "./loading";
+
 import axios from "axios";
 const Blogs = () => {
   const [blogRes, setBlogRes] = useState(null);

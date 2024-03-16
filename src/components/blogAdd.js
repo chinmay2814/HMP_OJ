@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import axios from "axios";
+
 const AddBlogForm = () => {
   const [blogTitle, setBlogTitle] = useState("");
   const [blogDesc, setBlogDesc] = useState("");
@@ -48,13 +49,12 @@ const AddBlogForm = () => {
       );
 
       console.log(response); // Response from the server
-      // Optionally, redirect to another page or show a success message
+      // Redirect to /blogs
     } catch (error) {
       console.error("Error:", error);
       // Handle error (e.g., show error message to the user)
     }
   };
-
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">Add Blog</h1>
