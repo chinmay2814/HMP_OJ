@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingComponent from "./loading";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 const Blogs = () => {
   const [blogRes, setBlogRes] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -45,6 +47,13 @@ const Blogs = () => {
               </div>
             </Link>
           ))}
+          <NavLink exact to="/createBlog" onClick={handleClick}>
+            <div className="absolute bottom-60 right-16">
+              <button className="bg-gray-500 rounded-full font-mono font-bold text-xl text-white py-3 px-4 rounded-lg  hover:bg-gray-600 transition-colors duration-300 shadow-xl">
+                Add Blog
+              </button>
+            </div>
+          </NavLink>
         </div>
       </div>
     </div>
