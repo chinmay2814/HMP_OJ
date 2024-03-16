@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 function Header() {
   const [click, setClick] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   let userName = "";
   const storedUser = localStorage.getItem("user");
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ function Header() {
   const handleUserClick = () => {
     navigate(`/profile/${userName}`);
   };
-  const handleClick = () => setClick(!click);
+  const handleClick = () => setIsDropdownOpen(!isDropdownOpen);
   const [isBlackTheme, setIsBlackTheme] = useState(false);
 
   // Function to toggle black theme
@@ -182,6 +183,7 @@ function Header() {
                       </a>
                     </NavLink>
                   </li>
+
                   <button
                     type="button"
                     onClick={handleLogout}
@@ -215,7 +217,7 @@ function Header() {
               >
                 {/* <i className={click ? "fas fa-times" : "fas fa-bars"}></i> */}
 
-                {click ? (
+                {isDropdownOpen ? (
                   <span className="icon">
                     <HamburgetMenuClose />{" "}
                   </span>
@@ -225,6 +227,57 @@ function Header() {
                   </span>
                 )}
               </div>
+              {isDropdownOpen && (
+                <div
+                  className={`absolute top-14 left-0 right-0 bg-white dark:bg-gray-900 z-10 overflow-hidden transition-all duration-300 ${
+                    isDropdownOpen ? "max-h-screen" : "max-h-0"
+                  }`}
+                >
+                  <ul className="flex flex-col items-center gap-4 py-4">
+                    <li class="flex items-center h-full">
+                      <NavLink exact to="/problemset" onClick={handleClick}>
+                        <a
+                          class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
+                          href="#"
+                        >
+                          Practice
+                        </a>
+                      </NavLink>
+                    </li>
+                    <li class="flex items-center h-full">
+                      <NavLink exact to="/contest" onClick={handleClick}>
+                        <a
+                          class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
+                          href="#"
+                        >
+                          Contest
+                        </a>
+                      </NavLink>
+                    </li>
+                    <li class="flex items-center h-full">
+                      <NavLink exact to="/problemset" onClick={handleClick}>
+                        <a
+                          class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
+                          href="#"
+                        >
+                          Chat
+                        </a>
+                      </NavLink>
+                    </li>
+                    <li class="flex items-center h-full">
+                      <NavLink exact to="/blogs" onClick={handleClick}>
+                        <a
+                          class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
+                          href="#"
+                        >
+                          Blog
+                        </a>
+                      </NavLink>
+                    </li>
+                    {/* Add the remaining navbar items */}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>
