@@ -17,10 +17,11 @@ require("dotenv").config();
 // console.log(jwtSecret);
 
 //import Routes
-const authRoutes=require("./routes/authRoutes");
-const  userRoutes=require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 //const problemTypeRoutes=require("./routes/problemTypeRoutes.js");
-const problemRoutes=require("./routes/problemRoutes.js");
+const problemRoutes = require("./routes/problemRoutes.js");
+const blogRoutes = require("./routes/blogRoutes");
 
 // app.get('/', (req, res) => {
 //   res.send('Hello, World!');
@@ -29,7 +30,7 @@ const problemRoutes=require("./routes/problemRoutes.js");
 
 app.get(
   "api/auth",
-  passport.authenticate("google", { scope: ['email', 'profile'] })
+  passport.authenticate("google", { scope: ["email", "profile"] })
 );
 //database
 mongoose
@@ -54,11 +55,11 @@ app.use(cookieParser());
 app.get;
 
 //routes middleware
-app.use('/api',authRoutes);
-app.use("/api",userRoutes);
+app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 //app.use("/api",problemTypeRoutes);
-app.use("/api",problemRoutes);
-
+app.use("/api", problemRoutes);
+app.use("/api", blogRoutes);
 // //api for comilation
 // const axios = require('axios');
 
@@ -113,7 +114,6 @@ app.use("/api",problemRoutes);
 //error middleware
 app.use(errorHandler);
 //
-
 
 //port
 //const PORT = process.env.PORT ;

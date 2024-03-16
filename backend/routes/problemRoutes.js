@@ -21,6 +21,6 @@ router.get("/allProblems", allProblems);
 router.get("/testProblem/:id", testProblem);
 
 // problem by id
-router.get("/problem/:id", isAuthenticated,singleProblem);
+router.get("/problem/:id", singleProblem);
 
 module.exports = router;

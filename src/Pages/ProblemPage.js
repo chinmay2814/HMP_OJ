@@ -5,6 +5,7 @@ import LoadingComponent from "../components/loading";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/footer";
 const ProblemPage = () => {
   const nav = useNavigate();
   const [problem, setProblem] = useState(null);
@@ -66,12 +67,17 @@ const ProblemPage = () => {
             <p>{problem.input}</p>
             <h2 className="section-title">Output</h2>
             <p>{problem.output}</p>
+            <h2 className="section-title">Sample Input</h2>
+            <p>{problem.sampleTest.input}</p>
+            <h2 className="section-title">Sample Output</h2>
+            <p>{problem.sampleTest.output}</p>
           </div>
         </main>
+        <button className="submitbtn" onClick={handleSubmit}>
+          Submit Code
+        </button>
       </div>
-      <button className="submitbtn" onClick={handleSubmit}>
-        Submit Code
-      </button>
+      <Footer />
     </>
   );
 };
