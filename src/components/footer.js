@@ -1,53 +1,30 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-
-import "../CSS/footer.css";
+import React, { useState } from "react";
+import codeIconGIF from "../images/HMP-OJ-unscreen.png";
+import codeIconGIFBlack from "../images/HMP-OJ-unscreen2.png";
+// import "../CSS/Default.css";
 
 const Footer = () => {
+  const [isBlackTheme, setIsBlackTheme] = useState(false);
+
+  // Function to toggle black theme
+  const toggleTheme = () => {
+    setIsBlackTheme(!isBlackTheme);
+  };
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-section">
-          <h3>About Us</h3>
-          <p>
-          
-          </p>
-        </div>
-        <div className="footer-section">
-          <h3>Contact Us</h3>
-          <p>Email: support@thehmpoj.com</p>
-          <p>Phone: +91 88407 67787</p>
-        </div>
-        <div className="footer-section">
-          <h3>Follow Us</h3>
-          <div className="social-icons">
-            <a href="https://facebook.com">
-              <FontAwesomeIcon icon={faFacebook} />
-            </a>
-            <a href="https://twitter.com">
-              <FontAwesomeIcon icon={faTwitter} />
-            </a>
-            <a href="https://instagram.com">
-              <FontAwesomeIcon icon={faInstagram} />
-            </a>
-            <a href="https://linkedin.com">
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
+    <footer class="bg-gray-100 dark:bg-black">
+      <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <div class="flex justify-center text-teal-600 sm:justify-start">
+            <img
+              src={isBlackTheme ? codeIconGIFBlack : codeIconGIF}
+              alt="Code Icon"
+              class=" h-20 w-20 mr-0" // Set height and width to 8%
+            />
           </div>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
-        <div className="additional-links">
-          <a href="/terms">Terms of Use</a>
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/sitemap">Sitemap</a>
+
+          <p class="mt-4 text-center text-sm text-gray-500 lg:mt-0 lg:text-right dark:text-white">
+            Copyright &copy; 2023. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

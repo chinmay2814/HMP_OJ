@@ -7,22 +7,22 @@ const{isAuthenticated,isAdmin}=require("../middleware/auth");
 //routes
 
 //admin based user data
-router.get('/allusers', isAuthenticated, isAdmin, allUsers);
+router.get('/allusers',  isAdmin, allUsers);
 
 //leaderboard
 router.get('/leaderboard',  allUsers);
 
 // user by id
-router.get('/user/:id', isAuthenticated, singleUser);
+router.get('/user/:id',  singleUser);
 
 //edit User
-router.put('/user/edit/:id', isAuthenticated, editUser);
+router.put('/user/edit/:id',  editUser);
 
 //delete User
-router.delete('/admin/user/delete/:id', isAuthenticated, isAdmin, deleteUser);
+router.delete('/admin/user/delete/:id',  isAdmin, deleteUser);
 
 //updatePoints
-router.put('/user/updatePoints/:id', isAuthenticated, updatePoints);
+router.put('/user/updatePoints/:id',  updatePoints);
 
 
 

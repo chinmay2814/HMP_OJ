@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../CSS/ProblemPage.css"; // Import CSS file for styling
 import LoadingComponent from "../components/loading";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
 const ProblemPage = () => {
   const nav = useNavigate();
   const [problem, setProblem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const _id = useParams().problemid;
+
   const handleSubmit = () => {
     nav(`/submit/${_id}`);
   };
+
   console.log(_id);
+
   useEffect(() => {
     const fetchProblem = async () => {
       try {
@@ -30,7 +33,7 @@ const ProblemPage = () => {
     };
 
     fetchProblem();
-  }, [_id]); // Include _id in the dependency array
+  }, [_id]);
 
   if (loading) {
     return <LoadingComponent />;
@@ -40,7 +43,7 @@ const ProblemPage = () => {
     return (
       <>
         <Header />
-        <div className="error">Problem not found</div>
+        <div className="error text-red-500 text-center mt-8">Problem not found</div>
       </>
     );
   }
@@ -48,12 +51,12 @@ const ProblemPage = () => {
   return (
     <>
       <Header />
-      <div className="container">
-        <header className="header">
+      <div className="container mx-auto px-4">
+        <header className="header bg-gray-900 text-white py-5 text-center">
           <h1 className="title">{problem.title}</h1>
         </header>
 
-        <main className="main">
+        <main className="main bg-white rounded-lg shadow-md p-6 mt-4">
           <div className="constraints">
             <h2 className="section-title">Time limit {problem.timeLimit}</h2>
           </div>
@@ -69,7 +72,7 @@ const ProblemPage = () => {
           </div>
         </main>
       </div>
-      <button className="submitbtn" onClick={handleSubmit}>
+      <button className="submitbtn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
         Submit Code
       </button>
     </>

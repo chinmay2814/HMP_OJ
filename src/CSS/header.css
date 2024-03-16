@@ -12,10 +12,10 @@
   z-index: 20;
 }
 .nav-icon-img {
-  width: 24%; /* Adjust the width as needed */
+  width: 48%; /* Adjust the width as needed */
   height: auto;
   margin-right: 10%; /* Adjust spacing as needed */
-  margin-top: -14%; /* Adjust spacing as needed */
+  margin-top: -5%; /* Adjust spacing as needed */
   max-width: 300px; /* Limit maximum width to prevent overflowing */
   align-self: center; /* Initially align the GIF to the center */
 }

@@ -69,6 +69,11 @@ const Dashboard = () => {
                       <h4>{userData.user.questionsSolved}</h4>
                       <h6>days</h6>
                     </div>
+                    <div class="p-3 bg-primary text-center skill-block">
+                      <h6>User Since</h6>
+                      <h4>{userData.user.questionsSolved}</h4>
+                      <h6>days</h6>
+                    </div>
                     <div class="p-3 bg-success text-center skill-block">
                       <h6>Points Earned</h6>
                       <div></div>
