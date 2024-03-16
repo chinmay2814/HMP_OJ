@@ -69,6 +69,10 @@ const ProblemPage = () => {
             <p>{problem.input}</p>
             <h2 className="section-title">Output</h2>
             <p>{problem.output}</p>
+            <h2 className="section-title">Sample Input</h2>
+            <p>{problem.sampleTest.input}</p>
+            <h2 className="section-title">Sample Output</h2>
+            <p>{problem.sampleTest.output}</p>
           </div>
         </main>
       </div>

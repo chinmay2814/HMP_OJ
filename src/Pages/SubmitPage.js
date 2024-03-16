@@ -17,6 +17,7 @@ function SubmissionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [resToken, setResToken] = useState([]);
   const [statusDescriptions, setStatusDescriptions] = useState([]);
+  const [response, setResponse] = useState(null);
   const _id = useParams().problemid;
 
   const handleCodeChange = (value) => {
@@ -33,95 +34,131 @@ function SubmissionPage() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    const responseData = [];
+    setStatusDescriptions([]);
     try {
       // Fetch test cases
+      setStatusDescriptions([]);
       const response = await axios.get(
         `http://localhost:5000/api/testProblem/${_id}`
       );
-      setTestCases(response.data.testcases);
 
-      testCases.forEach((value) => {
-        const submission = {
-          language_id: language,
-          source_code: code,
-          stdin: value.input,
-          expected_output: value.output,
-          // wall_time_limit: value.timeLimit,
+      if (response && response.data && response.data.testcases) {
+        const testCases = response.data.testcases;
+        const responseData = [];
+
+        testCases.forEach((value) => {
+          const submission = {
+            language_id: language,
+            source_code: code,
+            stdin: value.input,
+            expected_output: value.output,
+            wall_time_limit: value.timeLimit,
+          };
+
+          responseData.push(submission);
+        });
+
+        const options = {
+          method: "POST",
+          url: "https://judge0-ce.p.rapidapi.com/submissions/batch",
+          params: {
+            base64_encoded: "false",
+            wait: "true",
+            fields: "*",
+          },
+          headers: {
+            "content-type": "application/json",
+            "X-RapidAPI-Key":
+              "e78fdc0680msh8aaea3ccd6887e2p19433ajsn5317b7ca75c4",
+            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+          },
+          data: {
+            submissions: responseData,
+          },
         };
 
-        responseData.push(submission);
-      });
+        try {
+          const response = await axios.request(options);
+          setResToken(response.data);
+        } catch (error) {
+          toast.warning("Response not sent. Please try again.");
+          console.error(error);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        console.error("Error fetching test cases or response data is invalid.");
+      }
     } catch (error) {
-      setError(error.response.data.message);
-    } finally {
-      setIsLoading(false);
-    }
-
-    const options = {
-      method: "POST",
-      url: "https://judge0-ce.p.rapidapi.com/submissions/batch",
-      params: {
-        base64_encoded: "false",
-        wait: "true",
-        fields: "*",
-      },
-      headers: {
-        "content-type": "application/json",
-        "X-RapidAPI-Key": "18f758967emsh70d88d5f7e10e13p14acffjsne5bf2100c38d",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-      },
-      data: {
-        submissions: responseData,
-      },
-    };
-
-    try {
-      const response = await axios.request(options);
-      setResToken(response.data);
-    } catch (error) {
-      toast.warning("response not send, try again");
+      setError(error.response.data.message || "An error occurred.");
       console.error(error);
     }
-
-    setIsLoading(false);
   };
 
   useEffect(() => {
     const getTokens = async () => {
-      const formattedTokens = resToken.map((obj) => obj.token).join(",");
-      const gettoken = {
-        method: "GET",
-        url: "https://judge0-ce.p.rapidapi.com/submissions/batch",
-        params: {
-          tokens: formattedTokens,
-          base64_encoded: "true",
-          fields: "*",
-        },
-        headers: {
-          "X-RapidAPI-Key":
-            "e78fdc0680msh8aaea3ccd6887e2p19433ajsn5317b7ca75c4",
-          "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-        },
+      // Function to be executed after the delay
+
+      const delayedFunction = async () => {
+        setIsLoading(true);
+        const formattedTokens = resToken.map((obj) => obj.token).join(",");
+        const gettoken = {
+          method: "GET",
+          url: "https://judge0-ce.p.rapidapi.com/submissions/batch",
+          params: {
+            tokens: formattedTokens,
+            base64_encoded: "false",
+            fields: "*",
+          },
+          headers: {
+            "X-RapidAPI-Key":
+              "e78fdc0680msh8aaea3ccd6887e2p19433ajsn5317b7ca75c4",
+            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+          },
+        };
+
+        try {
+          const response = await axios.request(gettoken);
+          const descriptions = response.data.submissions.map(
+            (obj) => obj.status.description
+          );
+          setStatusDescriptions(descriptions);
+          console.log(descriptions);
+          var isAccepted = true;
+          descriptions.forEach((status) => {
+            if (status !== "Accepted") {
+              isAccepted = false;
+              return; // Exit the loop early once a status other than "Accepted" is found
+            }
+          });
+          if (isAccepted) {
+            toast.success("ALL TESTCASES PASSED");
+          } else {
+            toast.error("WRONG SUBMISSION");
+          }
+          try {
+            const storedUser = localStorage.getItem("user");
+            const userData = JSON.parse(storedUser);
+            const problemId = _id;
+            const response = await axios.put(
+              `http://localhost:5000/api/user/updatePoints/${userData.user._id}`,
+              { isAccepted, problemId }
+            );
+            setResponse(response.data);
+            console.log(response, "put");
+          } catch (error) {
+            setError(error.response.data.message || "An error occurred.");
+          }
+          console.log(isAccepted);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setIsLoading(false);
+        }
       };
 
-      try {
-        const response = await axios.request(gettoken);
-        const descriptions = response.data.submissions.map(
-          (obj) => obj.status.description
-        );
-
-        setStatusDescriptions(descriptions);
-        console.log(descriptions, response);
-        const allAccepted = statusDescriptions.every(
-          (description) => description === "Accepted"
-        );
-        if (allAccepted) {
-          toast.success("All Testcases accepted");
-        }
-      } catch (error) {
-        console.error(error);
-      }
+      // Delay before executing the function
+      setTimeout(delayedFunction, 2000); // 2000 milliseconds = 2 seconds
     };
 
     if (resToken.length > 0) {

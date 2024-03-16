@@ -55,7 +55,7 @@ const ProblemList = () => {
                     <th>Serial No.</th>
                     <th>Title</th>
                     <th>Difficulty</th>
-                    <th>Time Limit</th>
+                    <th>Tags</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -67,7 +67,7 @@ const ProblemList = () => {
                       <td>{index + 1}</td>
                       <td>{problem.title}</td>
                       <td>{problem.difficulty}</td>
-                      <td>{problem.timeLimit}</td>
+                      <td>{problem.problemType}</td>
                     </tr>
                   ))}
                 </tbody>
