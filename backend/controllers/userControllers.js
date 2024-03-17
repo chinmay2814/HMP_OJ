@@ -43,6 +43,23 @@ exports.singleUser = async (req, res, next) => {
   }
 };
 
+exports.searchUser = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ userName: req.params.userName });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+    res.status(200).json({
+      success: true,
+      user,
+    });
+    next();
+  } catch (error) {
+    return next(error);
+  }
+};
+
+
 //edit user
 exports.editUser = async (req, res, next) => {
   try {
