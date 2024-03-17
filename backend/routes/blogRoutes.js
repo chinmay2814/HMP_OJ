@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const { isAdmin } = require("../middleware/auth");
 const {
   createBlog,
   getAllBlogs,
@@ -12,7 +12,7 @@ const {
 // Define routes
 
 // Create a new blog
-router.post("/createBlog", createBlog);
+router.post("/createBlog", isAdmin, createBlog);
 
 // Get all blogs
 router.get("/blogs", getAllBlogs);

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoadingComponent from "./loading";
 import { useNavigate } from "react-router-dom";
-import "../CSS/Problemset.css";
 
 const ProblemList = () => {
   const navigate = useNavigate();

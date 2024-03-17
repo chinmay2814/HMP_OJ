@@ -43,7 +43,7 @@ exports.login = async (req, res, next) => {
     if (!isMatched) {
       return next(new ErrorResponse("invalid credentials", 400));
     }
-    //console.log("user login");
+    console.log("user login");
     sendTokenResponse(user, 200, res);
     // return res.status(200).json({
     //    message: "success", user ,
@@ -56,10 +56,10 @@ exports.login = async (req, res, next) => {
 
 const sendTokenResponse = async (user, codeStatus, res) => {
   const token = await user.getJwtToken();
-
+  console.log(token);
   res
     .status(codeStatus)
-    .cookie("token", token, { maxAge: 60 * 1000 })
+    .cookie("token", token, { maxAge: 60 * 60 * 1000 })
     .json({
       token,
       user,

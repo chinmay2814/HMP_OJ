@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../CSS/leaderboard.css";
+
 import LoadingComponent from "./loading";
 import { useNavigate } from "react-router-dom";
 function LeaderboardComponent() {

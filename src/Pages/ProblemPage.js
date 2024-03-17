@@ -4,6 +4,8 @@ import LoadingComponent from "../components/loading";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useClipboard } from "use-clipboard-copy";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ProblemPage = () => {
   const nav = useNavigate();
@@ -15,9 +17,17 @@ const ProblemPage = () => {
   const handleSubmit = () => {
     nav(`/submit/${_id}`);
   };
+  const clipboard = useClipboard();
 
-  console.log(_id);
+  const handleCopyInput = () => {
+    clipboard.copy(problem.sampleTest.input);
+    alert("Input copied to clipboard");
+  };
 
+  const handleCopyOutput = () => {
+    clipboard.copy(problem.sampleTest.output);
+    alert("Output copied to clipboard");
+  };
   useEffect(() => {
     const fetchProblem = async () => {
       try {
@@ -44,7 +54,7 @@ const ProblemPage = () => {
     return (
       <>
         <Header />
-        <div className="error text-red-500 text-center mt-8">
+        <div className="font-mono error text-red-500 text-center mt-8">
           Problem not found
         </div>
       </>
@@ -54,37 +64,85 @@ const ProblemPage = () => {
   return (
     <>
       <Header />
-      <div className="container mx-auto px-4">
-        <header className="header bg-gray-900 text-white py-5 text-center">
-          <h1 className="title">{problem.title}</h1>
+      <div className="font-mono container mx-auto px-4">
+        <header className="font-mono header bg-gray-900 text-white py-5 text-center">
+          <h1 className="font-mono title text-xl md:text-3xl">
+            {problem.title}
+          </h1>
+          <div className="font-mono constraints">
+            <h6 className="font-mono section-title text-lg md:text-xl">
+              Time limit :{problem.timeLimit}
+            </h6>
+          </div>
         </header>
 
-        <main className="main bg-white rounded-lg shadow-md p-6 mt-4">
-          <div className="constraints">
-            <h2 className="section-title">Time limit {problem.timeLimit}</h2>
+        <main className="font-mono main bg-white rounded-lg shadow-md p-6 mt-4 text-left">
+          <div className="font-mono mb-5">
+            <h2 className="font-mono section-title font-extrabold text-lg md:text-xl">
+              Problem Statement:
+            </h2>
+            <div
+              className="font-mono prose"
+              dangerouslySetInnerHTML={{ __html: problem.description }}
+            ></div>
           </div>
-          <div className="problem-statement">
-            <h2 className="section-title">Problem Statement</h2>
-            <p>{problem.description}</p>
+          <div className="font-mono input-output">
+            <h2 className="font-mono section-title font-extrabold text-lg md:text-xl">
+              Input
+            </h2>
+            <div className="font-mono prose">
+              <div
+                className="font-mono prose"
+                dangerouslySetInnerHTML={{ __html: problem.input }}
+              ></div>
+            </div>
+            <h2 className="font-mono section-title font-extrabold text-lg md:text-xl">
+              Output
+            </h2>
+            <div className="font-mono prose">
+              <div
+                className="font-mono prose"
+                dangerouslySetInnerHTML={{ __html: problem.output }}
+              ></div>
+            </div>
           </div>
-          <div className="input-output">
-            <h2 className="section-title">Input</h2>
-            <p>{problem.input}</p>
-            <h2 className="section-title">Output</h2>
-            <p>{problem.output}</p>
-            <h2 className="section-title">Sample Input</h2>
-            <p>{problem.sampleTest.input}</p>
-            <h2 className="section-title">Sample Output</h2>
-            <p>{problem.sampleTest.output}</p>
+          <div className="max-w-4xl mx-auto mt-8">
+            <div className="bg-gray-100 p-6 rounded-md">
+              <h2 className="text-xl font-semibold mb-4">Example</h2>
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold">Input</h3>
+                <pre className="bg-white p-4 rounded-md shadow-sm overflow-x-auto">
+                  {problem.sampleTest.input}
+                </pre>
+                <button
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2"
+                  onClick={handleCopyInput}
+                >
+                  Copy Input
+                </button>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">Output</h3>
+                <pre className="bg-white p-4 rounded-md shadow-sm overflow-x-auto">
+                  {problem.sampleTest.output}
+                </pre>
+                <button
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2"
+                  onClick={handleCopyOutput}
+                >
+                  Copy Output
+                </button>
+              </div>
+            </div>
           </div>
+          <button
+            className="font-mono submitbtn bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 block mx-auto"
+            onClick={handleSubmit}
+          >
+            Submit Code
+          </button>
         </main>
       </div>
-      <button
-        className="submitbtn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={handleSubmit}
-      >
-        Submit Code
-      </button>
     </>
   );
 };

@@ -9,6 +9,7 @@ import ProblemSet from "./Pages/ProblemSet";
 import DefaultPage from "./Pages/Default";
 import ProblemPage from "./Pages/ProblemPage";
 import BlogPage from "./Pages/Blogs";
+import ProblemForm from "./Pages/CreateProblem";
 
 import BlogShow from "./Pages/BlogShow";
 import AddBlogForm from "./components/blogAdd";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/problemset" element={<ProblemSet />}></Route>
           <Route path={`/problem/:problemid`} element={<ProblemPage />}></Route>
           <Route path={"/createblog"} element={<BlogCreate />}></Route>
+          <Route path={"/createProblem"} element={<ProblemForm />}></Route>
           <Route path="*" element={<DefaultPage />} />
         </Routes>
       </BrowserRouter>

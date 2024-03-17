@@ -91,7 +91,10 @@ function SubmissionPage() {
         console.error("Error fetching test cases or response data is invalid.");
       }
     } catch (error) {
-      setError(error.response.data.message || "An error occurred.");
+      if (error.response.status === 401) {
+        toast.info("You are not authorized. Please log in first.");
+      }
+      setIsLoading(false);
       console.error(error);
     }
   };

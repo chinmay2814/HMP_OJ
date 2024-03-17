@@ -30,27 +30,31 @@ const Blogs = () => {
   if (error) return <p>Error!</p>;
 
   return (
-    <div className="w-full bg-[#f9f9f9] py-[50px]">
-      <div className="max-w-[1240px] mx-auto">
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 ss:grid-cols-1 gap-8 px-4 text-black">
+    <div className="font-mono w-full bg-[#f9f9f9] py-[50px]">
+      <div className="font-mono max-w-[1240px] mx-auto">
+        <div className="font-mono grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 ss:grid-cols-1 gap-8 px-4 text-black">
           {blogRes.data.data.map((blog) => (
             <Link key={blog._id} to={`/blog/${blog._id}`}>
-              <div className="bg-white rounded-xl overflow-hidden drop-shadow-md">
+              <div className="font-mono bg-white rounded-xl overflow-hidden drop-shadow-md">
                 <img
-                  className="h-56 w-full object-cover"
+                  className="font-mono h-56 w-full object-cover"
                   src={`https://img.freepik.com/free-photo/toy-bricks-table_144627-48267.jpg?w=1060&t=st=1710578482~exp=1710579082~hmac=96da3e2ff43cf0872c21a635d91cbf095ef7f24ea7048e3d28f1df931dda84db`}
                   alt={blog.blogTitle}
                 />
-                <div className="p-8">
-                  <h3 className="font-bold text-2xl my-1">{blog.blogTitle}</h3>
-                  <p className="text-gray-600 text-xl">{blog.blogDesc}</p>
+                <div className="font-mono p-8">
+                  <h3 className="font-mono font-bold text-2xl my-1">
+                    {blog.blogTitle}
+                  </h3>
+                  <p className="font-mono text-gray-600 text-xl">
+                    {blog.blogDesc}
+                  </p>
                 </div>
               </div>
             </Link>
           ))}
           <NavLink exact to="/createBlog" onClick={handleClick}>
-            <div className="fixed bottom-40 right-10">
-              <button className="bg-gray-500 rounded-full font-mono font-bold text-xl text-white py-3 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-xl">
+            <div className="font-mono fixed bottom-40 right-10">
+              <button className="font-mono bg-gray-500 rounded-full font-mono font-bold text-xl text-white py-3 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-xl">
                 +
               </button>
             </div>

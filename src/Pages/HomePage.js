@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import LeaderboardComponent from "../components/leaderboard";
-import "../CSS/commonbody.css";
 
+import axios from "axios";
 const Homepage = () => {
+  const [error, setError] = useState(null);
   const nav = useNavigate();
   const handleproblemset = () => {
     nav("/problemset");
@@ -14,7 +15,18 @@ const Homepage = () => {
     nav("/blogs");
   };
   const randomProblem = () => {
-    nav("/");
+    const fetchRandomProblem = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/randomProblem"
+        );
+        nav(`/problem/${response.data.problemId}`);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchRandomProblem();
   };
   const storedUser = localStorage.getItem("user");
   if (storedUser) {

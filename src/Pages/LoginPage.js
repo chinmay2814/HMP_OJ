@@ -22,7 +22,9 @@ const LoginPage = () => {
   const handleShowPasswordToggle = () => {
     setShowPassword(!showPassword);
   };
-
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("hi");
@@ -53,46 +55,67 @@ const LoginPage = () => {
   const handleGoogle = async (e) => {};
   return (
     <>
-      <div className="loginbody">
-        <div className="wrapper">
-          <div className="form-box login">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="input-box">
-                <label htmlFor="username">Username:</label>
+      <div class="bg-gray-50 font-mono text-[#333]">
+        <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+          <div class="max-w-md w-full border py-8 px-6 rounded border-gray-300 bg-white">
+            <h2 class="text-center text-3xl font-extrabold">Login</h2>
+            <form class="mt-10 space-y-4" onSubmit={handleSubmit}>
+              <div>
                 <input
                   type="text"
                   id="username"
                   value={userName}
+                  required
+                  class="w-full text-sm px-4 py-3 rounded outline-none border-2 focus:border-blue-500"
+                  placeholder="Email address"
                   onChange={handleUsernameChange}
-                />
-              </div>
-              <div className="input-box">
-                <label htmlFor="password">Password:</label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  value={password}
-                  onChange={handlePasswordChange}
                 />
               </div>
               <div>
                 <input
-                  type="checkbox"
-                  id="showPasswordCheckbox"
-                  checked={showPassword}
-                  onChange={handleShowPasswordToggle}
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  required
+                  class="w-full text-sm px-4 py-3 rounded outline-none border-2 focus:border-blue-500"
+                  placeholder="Password"
+                  onChange={handlePasswordChange}
                 />
-                <label htmlFor="showPasswordCheckbox">Show password</label>
+              </div>
+              <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center">
+                  <input
+                    class="h-4 w-4 ml-1 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    type="checkbox"
+                    id="showPasswordCheckbox"
+                    checked={showPassword}
+                    onChange={handleShowPasswordToggle}
+                  />
+                </div>
+                <label htmlFor="showPasswordCheckbox" class="mr-60">
+                  Show password
+                </label>
               </div>
 
-              <button type="submit" className="btn" onClick={handleSubmit}>
+              <button
+                type="submit"
+                class="w-full py-2.5 px-4 text-sm rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                onClick={handleSubmit}
+              >
                 Login
+              </button>
+              <button
+                type="submit"
+                class="w-full py-2.5 px-4 text-sm rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                onClick={handleSignUp}
+              >
+                SignUp Instead
               </button>
             </form>
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

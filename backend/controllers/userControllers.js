@@ -43,8 +43,27 @@ exports.singleUser = async (req, res, next) => {
   }
 };
 
+exports.searchUser = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ userName: req.params.userName });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({
+      success: true,
+      user,
+    });
+    next();
+  } catch (error) {
+    return next(error);
+  }
+};
+
 //edit user
 exports.editUser = async (req, res, next) => {
+  console.log(req);
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -62,7 +81,13 @@ exports.editUser = async (req, res, next) => {
 //delete user
 exports.deleteUser = async (req, res, next) => {
   try {
-    const user = await User.findByIdAndRemove(req.params.id);
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
     res.status(200).json({
       success: true,
       message: "user deleted",
@@ -125,11 +150,7 @@ exports.updatePoints = async (req, res, next) => {
       };
     }
 
-    const user = await User.findByIdAndUpdate(
-      id,
-      updateQuery,
-      { new: true }
-    );
+    const user = await User.findByIdAndUpdate(id, updateQuery, { new: true });
 
     res.status(200).json({
       success: true,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "../CSS/header.css";
+
 import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import axios from "axios";
 import codeIconGIF from "../images/HMP-OJ-unscreen.png";
@@ -11,7 +11,7 @@ function Header() {
   const [click, setClick] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   let userName = "";
-  const storedUser = localStorage.getItem("user");
+  var storedUser = localStorage.getItem("user");
   const navigate = useNavigate();
   function isCookieAvailable(cookieName) {
     return document.cookie.includes(cookieName + "=");
@@ -43,7 +43,9 @@ function Header() {
     try {
       axios.defaults.withCredentials = true;
       const response = await axios.get("http://localhost:5000/api/logout");
+
       if (response.status) {
+        window.location.reload();
         localStorage.removeItem("user");
         storedUser = null;
       } else {
@@ -62,7 +64,7 @@ function Header() {
     const cookieExists = isCookieAvailable(cookieName);
 
     if (!cookieExists) {
-      handleLogout();
+      localStorage.removeItem("user");
     }
   }, []);
   const handleUserClick = () => {
@@ -76,7 +78,7 @@ function Header() {
     setIsBlackTheme(!isBlackTheme);
   };
   return (
-    <header class="bg-white dark:bg-gray-900">
+    <header class="bg-white  dark:bg-gray-900">
       <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-14 items-center justify-between">
           <div class="flex-1 md:flex md:items-center md:gap-12">
@@ -87,7 +89,7 @@ function Header() {
                   src={codeIconGIF}
                   to="/"
                   alt="Code Icon"
-                  class="h-12 w-auto"
+                  class="h-12  w-auto"
                 />
               </a>
             </NavLink>
@@ -135,7 +137,7 @@ function Header() {
                     </a>
                   </NavLink>
                 </li>
-                {storedUser ? (
+                {cookieExists ? (
                   <>
                     <li
                       class="flex items-center h-full"
@@ -245,7 +247,7 @@ function Header() {
                   {storedUser ? (
                     <>
                       <li
-                        class="flex items-center h-full"
+                        class="flex items-center h-full "
                         onClick={handleUserClick}
                       >
                         <NavLink onClick={handleUserClick}>
