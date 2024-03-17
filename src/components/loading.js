@@ -1,6 +1,6 @@
 import React from "react";
-import ReactLoading from "react-loading";
-import codeIconGIF from "../images/HMP-OJ-unscreen.gif"; 
+
+import codeIconGIF from "../images/HMP-OJ-unscreen.gif";
 const LoadingComponent = () => (
   <div
     style={{
@@ -18,7 +18,7 @@ const LoadingComponent = () => (
     }}
   >
     <img src={codeIconGIF} alt="Code Icon"></img>
-  </div> 
+  </div>
 );
 
 export default LoadingComponent;

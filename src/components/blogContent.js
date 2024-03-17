@@ -14,6 +14,7 @@ const BlogContent = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        axios.defaults.withCredentials = true;
         const res = await axios.get(
           `http://localhost:5000/api/blogs/${id.blogid}`
         );

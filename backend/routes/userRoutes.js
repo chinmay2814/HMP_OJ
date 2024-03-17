@@ -16,7 +16,7 @@ const { isAuthenticated, isAdmin } = require("../middleware/auth");
 router.get("/allusers", isAdmin, allUsers);
 
 //leaderboard
-router.get("/leaderboard", allUsers);
+router.get("/leaderboard", isAuthenticated, allUsers);
 
 // user by id
 router.get("/user/:id", singleUser);

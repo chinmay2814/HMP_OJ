@@ -13,6 +13,7 @@ const Blogs = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        axios.defaults.withCredentials = true;
         const res = await axios.get(`http://localhost:5000/api/blogs`);
         console.log(res);
         setBlogRes(res);
@@ -48,9 +49,9 @@ const Blogs = () => {
             </Link>
           ))}
           <NavLink exact to="/createBlog" onClick={handleClick}>
-            <div className="absolute bottom-60 right-16">
-              <button className="bg-gray-500 rounded-full font-mono font-bold text-xl text-white py-3 px-4 rounded-lg  hover:bg-gray-600 transition-colors duration-300 shadow-xl">
-                Add Blog
+            <div className="fixed bottom-40 right-10">
+              <button className="bg-gray-500 rounded-full font-mono font-bold text-xl text-white py-3 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-xl">
+                +
               </button>
             </div>
           </NavLink>

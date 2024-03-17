@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/leaderboard.css";
 import LoadingComponent from "./loading";
-
+import { useNavigate } from "react-router-dom";
 function LeaderboardComponent() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        axios.defaults.withCredentials = true;
         const response = await axios.get(
           "http://localhost:5000/api/leaderboard"
         );
@@ -18,72 +19,92 @@ function LeaderboardComponent() {
         setLoading(false);
       } catch (error) {
         setError(error.message);
+        if (error.response.status === 401) {
+          setError("You are not authorized. Please log in first.");
+        }
         setLoading(false);
       }
     };
 
     fetchUsers();
   }, []);
-
+  const handleUserclick = (userID) => {
+    // Use the `navigate` function to navigate to the problem page
+    console.log(userID);
+    navigate(`/profile/${userID}`);
+  };
   if (loading) {
     return <LoadingComponent />;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <h3 className="font-mono font-bold text-lg text-blueGray-700">
+          Leader Board
+        </h3>
+        <p className="font-mono text-red-500">{error}</p>
+      </div>
+    );
   }
 
   return (
-    <div class="flex flex-wrap ">
-      <div class="w-full xl:w-8/12 px-4">
-        <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white text-blueGray-700">
-          <div class="px-6 py-4 border-0">
-            <div class="flex flex-wrap items-center">
-              <div class="relative w-full max-w-full flex-grow flex-1">
-                <h3 class="font-bold text-lg text-blueGray-700">
+    <div className="flex flex-wrap">
+      <div className="w-full xl:w-8/12 px-4">
+        <div className="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white text-blueGray-700">
+          <div className="px-6 py-4 border-0">
+            <div className="flex flex-wrap items-center">
+              <div className="relative w-full max-w-full flex-grow flex-1">
+                <h3 className="font-mono font-bold text-lg text-blueGray-700">
                   Leader Board
                 </h3>
               </div>
             </div>
           </div>
-          <div class="block w-full overflow-x-auto">
-            <table class="items-center w-full bg-transparent border-collapse">
+          <div className="block w-full overflow-x-auto">
+            <table className="items-center w-full bg-transparent border-collapse">
               <thead>
                 <tr>
-                  <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
-                    Serial No.
+                  <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                    Serial No
                   </th>
-                  <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                  <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
                     Username
                   </th>
-                  <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                  <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
                     Points Earned
                   </th>
-                  <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                  <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
                     Problems Solved
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {users.map((user, index) => (
-                  <tr key={user._id}>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <div class="flex items-center">
-                        <span class="ml-3 font-bold NaN">{index + 1}</span>
+                  <tr key={user._id} onClick={() => handleUserclick(user._id)}>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <span className="ml-3 font-mono font-bold NaN">
+                          {index + 1}
+                        </span>
                       </div>
                     </td>{" "}
                     {/* Serial number column */}
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <div class="flex items-center">
-                        <span class="ml-3 font-bold NaN">{user.userName}</span>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <span className="ml-3 font-mono font-bold NaN">
+                          {user.userName}
+                        </span>
                       </div>
                     </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <div class="flex items-center">{user.pointsEarned}</div>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        {user.pointsEarned}
+                      </div>
                     </td>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <div class="flex items-center">
-                        <i class=" mr-2 text-emerald-500"></i>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <i className="mr-2 text-emerald-500"></i>
                         {user.questionsSolved}
                       </div>
                     </td>

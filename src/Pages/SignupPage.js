@@ -35,6 +35,7 @@ const SignupPage = () => {
     } else {
       setPasswordError(""); // Reset password error state if passwords match
       try {
+        axios.defaults.withCredentials = true;
         const response = await axios.post(
           "http://localhost:5000/api/signup",
           formData

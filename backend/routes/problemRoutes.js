@@ -15,7 +15,7 @@ const {
 router.post("/newproblem", newproblem);
 
 //all problem
-router.get("/allProblems", allProblems);
+router.get("/allProblems", isAuthenticated, allProblems);
 
 //testcase of  problem
 router.get("/testProblem/:id", testProblem);

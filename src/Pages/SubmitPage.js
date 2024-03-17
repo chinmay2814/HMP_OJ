@@ -38,6 +38,7 @@ function SubmissionPage() {
     try {
       // Fetch test cases
       setStatusDescriptions([]);
+      axios.defaults.withCredentials = true;
       const response = await axios.get(
         `http://localhost:5000/api/testProblem/${_id}`
       );
@@ -140,6 +141,7 @@ function SubmissionPage() {
             const storedUser = localStorage.getItem("user");
             const userData = JSON.parse(storedUser);
             const problemId = _id;
+            axios.defaults.withCredentials = true;
             const response = await axios.put(
               `http://localhost:5000/api/user/updatePoints/${userData.user._id}`,
               { isAccepted, problemId }

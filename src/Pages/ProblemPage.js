@@ -21,6 +21,7 @@ const ProblemPage = () => {
   useEffect(() => {
     const fetchProblem = async () => {
       try {
+        axios.defaults.withCredentials = true;
         const response = await axios.get(
           `http://localhost:5000/api/problem/${_id}`
         );
@@ -43,7 +44,9 @@ const ProblemPage = () => {
     return (
       <>
         <Header />
-        <div className="error text-red-500 text-center mt-8">Problem not found</div>
+        <div className="error text-red-500 text-center mt-8">
+          Problem not found
+        </div>
       </>
     );
   }
@@ -76,7 +79,10 @@ const ProblemPage = () => {
           </div>
         </main>
       </div>
-      <button className="submitbtn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
+      <button
+        className="submitbtn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={handleSubmit}
+      >
         Submit Code
       </button>
     </>

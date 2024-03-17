@@ -138,6 +138,7 @@ exports.testProblem = async (req, res, next) => {
 
 //load all problem based on diff,
 exports.allProblems = async (req, res, next) => {
+  console.log(req);
   const { difficulty, problemType, pageNumber } = req.query;
   const pageSize = 10;
   const page = Number(pageNumber) || 1;

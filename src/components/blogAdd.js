@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import axios from "axios";
 const AddBlogForm = () => {
+  const Navigate = useNavigate();
   const [blogTitle, setBlogTitle] = useState("");
   const [blogDesc, setBlogDesc] = useState("");
   const [blogContent, setBlogContent] = useState("");
@@ -33,6 +36,7 @@ const AddBlogForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Send form data to backend
+
     const formData = {
       blogTitle,
       blogDesc,
@@ -42,11 +46,13 @@ const AddBlogForm = () => {
     };
     console.log(formData);
     try {
+      axios.defaults.withCredentials = true;
       const response = await axios.post(
         "http://localhost:5000/api/createBlog",
         formData
       );
-
+      toast.success("Blog Created");
+      Navigate("/blogs");
       console.log(response); // Response from the server
       // Optionally, redirect to another page or show a success message
     } catch (error) {
