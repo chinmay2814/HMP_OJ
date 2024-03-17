@@ -43,7 +43,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div>
+      <div class="dark:bg-black">
         {loading ? (
           <LoadingComponent />
         ) : userData ? (

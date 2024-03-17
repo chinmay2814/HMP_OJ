@@ -49,7 +49,7 @@ const Blogs = () => {
             </Link>
           ))}
           <NavLink exact to="/createBlog" onClick={handleClick}>
-            <div className="absolute bottom-60 right-16">
+            <div className="absolute top-20 right-8">
               <button className="bg-gray-500 rounded-full font-mono font-bold text-xl text-white py-3 px-4 rounded-lg  hover:bg-gray-600 transition-colors duration-300 shadow-xl">
                 Add Blog
               </button>
