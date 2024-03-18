@@ -147,7 +147,7 @@ const Dashboard = () => {
                       <h4>{getTimePassed(user.createdAt)}</h4>
                       <h6>days</h6>
                     </div>
-                    <div className="font-mono p-3 bg-primary text-center skill-block">
+                    <div className="font-mono p-3 bg-secondary text-center skill-block">
                       <h6>Questions Solved</h6>
                       <h4>{user.questionsSolved}</h4>
                     </div>
