@@ -44,6 +44,7 @@ const SignupPage = () => {
         if (response.status === 200) {
           const user = response.data;
           // Handle successful signup
+          console.log("signup successful:", user);
           toast.success("Signup successful!");
           navigate("/login");
         } else {
@@ -134,19 +135,13 @@ const SignupPage = () => {
               {passwordError && (
                 <p className="error-message">{passwordError}</p>
               )}
-              <a
-                class="group  relative inline-block text-sm font-medium text-gray-800 focus:outline-none focus:ring active:text-gray-500"
-              >
+              <a class="group  relative inline-block text-sm font-medium text-gray-800 focus:outline-none focus:ring active:text-gray-500">
                 <span class="absolute inset-0 translate-x-0 translate-y-0 bg-gray-800 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5"></span>
 
                 <span class="relative block border border-black bg-white px-8 py-2">
-                <button type="submit"  >
-                Sign Up
-              </button>
+                  <button type="submit">Sign Up</button>
                 </span>
               </a>
-
-              
             </form>
           </div>
         </div>

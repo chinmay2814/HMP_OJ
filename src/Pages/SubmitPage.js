@@ -17,7 +17,9 @@ function SubmissionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [resToken, setResToken] = useState([]);
   const [statusDescriptions, setStatusDescriptions] = useState([]);
+  const [results, setResults] = useState([]);
   const [response, setResponse] = useState(null);
+  const [tableShow, setTableShow] = useState(false);
   const _id = useParams().problemid;
 
   const handleCodeChange = (value) => {
@@ -126,6 +128,10 @@ function SubmissionPage() {
           const descriptions = response.data.submissions.map(
             (obj) => obj.status.description
           );
+
+          const allPara = response.data.submissions.map((obj) => obj);
+
+          setResults(allPara);
           setStatusDescriptions(descriptions);
           var isAccepted = true;
           descriptions.forEach((status) => {
@@ -153,8 +159,10 @@ function SubmissionPage() {
             setError(error.response.data.message || "An error occurred.");
           }
         } catch (error) {
+          toast.error("Please write code Correctly");
           console.error(error);
         } finally {
+          setTableShow(true);
           setIsLoading(false);
         }
       };
@@ -198,13 +206,70 @@ function SubmissionPage() {
           Submit
         </button>
 
-        <div>
-          {statusDescriptions.map((description, index) => (
-            <p key={index}>
-              Test Case {index + 1}:{description}
-            </p>
-          ))}
-        </div>
+        {tableShow && (
+          <div className="block w-full overflow-x-auto">
+            <table className="items-center w-full bg-transparent border-collapse">
+              <thead>
+                <tr>
+                  <th className="px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                    TestCase
+                  </th>
+                  <th className="px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                    Status
+                  </th>
+                  <th className="px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                    Language
+                  </th>
+                  <th className="px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                    Time Taken
+                  </th>
+                  <th className="px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-mono font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">
+                    Memory Used
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.map((results, index) => (
+                  <tr>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <span className="ml-3 font-mono font-bold NaN">
+                          {index + 1}
+                        </span>
+                      </div>
+                    </td>{" "}
+                    {/* Serial number column */}
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <span className="ml-3 font-mono font-bold NaN">
+                          {results.status.description}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <span className="ml-3 font-mono text-sm font-bold NaN">
+                          {results.language.name}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        {results.wall_time * 1000}ms
+                      </div>
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <div className="flex items-center">
+                        <i className="mr-2 text-emerald-500"></i>
+                        {results.memory}kb
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
       <Footer />
     </>
