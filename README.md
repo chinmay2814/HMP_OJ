@@ -1,72 +1,97 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # HMP_OJ
-Online Judge
+
+HMP_OJ is an online judge system for competitive programming built with modern technologies. It provides a comprehensive platform for users to practice coding problems, submit solutions, and get feedback on their submissions.
+
+## Team Members
+
+1. Chinmay Malve (20225028) https://github.com/chinmay2814
+2. Keshav Diwakar (2025043) https://github.com/Keshav1707
+3. Subrat Shakya () https://github.com/subratshakya
+4. Priyanshu Anand (20225065) https://github.com/priyanshuanandd
+
+## Tech Stack
+
+- **Frontend**: React.js
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Real-time Communication**: Socket.IO
+- **CSS Framework**: Tailwind CSS
+
+## Features
+
+### Robust Authentication System
+- User registration and login
+- Password reset functionality
+- Session management with cookie-based authentication
+
+### Online Judge Functionality
+- Browse and attempt coding problems from various categories
+- Submit solutions in multiple programming languages
+- Automated evaluation and grading of submissions
+- View submission history and test case results
+- Leaderboard for tracking user rankings and performance
+
+### Editorial Blog
+- Access to problem editorials and explanations
+- Contribute to the blog by submitting articles
+
+### Live Chat Room
+- Real-time communication with other users
+- Discuss problems, solutions, and coding techniques
+
+### Data Management
+- User profile management
+- Track personal progress and performance
+- Manage problem sets and submissions
+
+### Leaderboard and Ranking
+- Leaderboard displaying user rankings based on points
+- Earn points by solving problems and contributing to the community
+
+### Session Management
+- User sessions with automatic logout after cookie expiration
+
+## Installation
+
+1. Clone the repository:git clone https://github.com/your-username/HMP_OJ.git
+2. Install dependencies for the frontend and backend:
+
+           cd HMP_OJ/frontend
+            yarn install
+            
+            cd ../backend
+            yarn install
+3. Configure the application settings:
+
+       cd backend
+        cp .env.example .env
+Update the `.env` file with your desired configuration settings, such as database credentials and secret keys.
+4. Start the development servers:
+
+    Start the frontend
+    cd ../frontend
+    yarn start
+
+    Start the backend
+    cd ../backend
+    yarn server:dev
+
+The application should now be accessible at `http://localhost:5001`.
+
+## Contributing
+
+Contributions to HMP_OJ are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the GitHub repository.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- [React.js](https://reactjs.org/) - The JavaScript library used for building the user interface
+- [Node.js](https://nodejs.org/) - The JavaScript runtime used for the backend
+- [Express.js](https://expressjs.com/) - The web application framework for Node.js
+- [MongoDB](https://www.mongodb.com/) - The NoSQL database used for data storage
+- [Socket.IO](https://socket.io/) - The library used for real-time communication
+- [Tailwind CSS](https://tailwindcss.com/) - The utility-first CSS framework used for styling
+  
