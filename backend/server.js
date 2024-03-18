@@ -8,7 +8,7 @@ const errorHandler = require("./middleware/error");
 const mongoose = require("mongoose");
 //passport auth
 const passport = require("passport");
-require("./middleware/auth.js");
+//require("./middleware/auth.js");
 
 //
 require("dotenv").config();
@@ -28,10 +28,10 @@ const blogRoutes = require("./routes/blogRoutes");
 // });
 //passport
 
-app.get(
-  "api/auth",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
+// app.get(
+//   "api/auth",
+//   passport.authenticate("google", { scope: ["email", "profile"] })
+// );
 //database
 mongoose
   .connect("mongodb://127.0.0.1:27017/HMP_OJ_DB", {
@@ -42,7 +42,13 @@ mongoose
   .catch((err) => console.log("MongoDb error", err));
 
 //middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5001", // Set the origin to your frontend domain
+    credentials: true, // Allow credentials (cookies)
+  })
+);
+app.options("*", cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "5mb" }));
 app.use(

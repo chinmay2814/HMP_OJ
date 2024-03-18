@@ -38,6 +38,7 @@ function SubmissionPage() {
     try {
       // Fetch test cases
       setStatusDescriptions([]);
+      axios.defaults.withCredentials = true;
       const response = await axios.get(
         `http://localhost:5000/api/testProblem/${_id}`
       );
@@ -90,7 +91,10 @@ function SubmissionPage() {
         console.error("Error fetching test cases or response data is invalid.");
       }
     } catch (error) {
-      setError(error.response.data.message || "An error occurred.");
+      if (error.response.status === 401) {
+        toast.info("You are not authorized. Please log in first.");
+      }
+      setIsLoading(false);
       console.error(error);
     }
   };
@@ -140,6 +144,7 @@ function SubmissionPage() {
             const storedUser = localStorage.getItem("user");
             const userData = JSON.parse(storedUser);
             const problemId = _id;
+            axios.defaults.withCredentials = true;
             const response = await axios.put(
               `http://localhost:5000/api/user/updatePoints/${userData.user._id}`,
               { isAccepted, problemId }

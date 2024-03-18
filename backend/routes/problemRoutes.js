@@ -7,6 +7,7 @@ const {
   singleProblem,
   allProblems,
   testProblem,
+  randomProblem,
 } = require("../controllers/problemControllers");
 
 //api
@@ -15,12 +16,15 @@ const {
 router.post("/newproblem", newproblem);
 
 //all problem
-router.get("/allProblems", allProblems);
+router.get("/allProblems", isAuthenticated, allProblems);
 
 //testcase of  problem
-router.get("/testProblem/:id", testProblem);
+router.get("/testProblem/:id", isAuthenticated, testProblem);
 
 // problem by id
 router.get("/problem/:id", singleProblem);
+
+//random Problem
+router.get("/randomProblem", randomProblem);
 
 module.exports = router;

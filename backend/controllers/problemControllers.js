@@ -88,26 +88,6 @@ exports.testProblem = async (req, res, next) => {
     return next(error);
   }
 };
-exports.testProblem = async (req, res, next) => {
-  try {
-    const problem = await Problem.findById(req.params.id).populate("testcases"); // Populate the testcases array with actual Testcase objects
-
-    // Extract the input and output fields from the populated testcases array
-    const testcases = problem.testcases.map((testcase) => ({
-      input: testcase.input,
-      output: testcase.output,
-    }));
-
-    res.status(200).json({
-      success: true,
-      testcases,
-      timeLimit: problem.timeLimit,
-    });
-    next();
-  } catch (error) {
-    return next(error);
-  }
-};
 
 //   //load all problem
 // exports.allProblems = async (req, res, next) => {
@@ -138,6 +118,7 @@ exports.testProblem = async (req, res, next) => {
 
 //load all problem based on diff,
 exports.allProblems = async (req, res, next) => {
+  console.log(req);
   const { difficulty, problemType, pageNumber } = req.query;
   const pageSize = 10;
   const page = Number(pageNumber) || 1;
@@ -171,5 +152,24 @@ exports.allProblems = async (req, res, next) => {
     next();
   } catch (error) {
     return next(error);
+  }
+};
+
+//random problem
+exports.randomProblem = async (req, res) => {
+  try {
+    // Count the total number of documents in the collection
+    const count = await Problem.countDocuments();
+    // Generate a random index within the range of available documents
+    const randomIndex = Math.floor(Math.random() * count);
+    // Fetch a random document from the collection
+    const randomProblem = await Problem.findOne().skip(randomIndex);
+
+    res.status(200).json({
+      success: true,
+      problemId: randomProblem._id,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };

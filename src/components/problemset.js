@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoadingComponent from "./loading";
 import { useNavigate } from "react-router-dom";
-import "../CSS/Problemset.css";
 
 const ProblemList = () => {
   const navigate = useNavigate();
@@ -15,8 +14,9 @@ const ProblemList = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
+        axios.defaults.withCredentials = true;
         const response = await axios.get(
-          "http://localhost:5000/api/allProblems"
+          `http://localhost:5000/api/allProblems?pageNumber=${page}`
         );
         setProblems(response.data.problems);
         setPage(response.data.page);
@@ -24,6 +24,10 @@ const ProblemList = () => {
         setLoading(false);
       } catch (error) {
         setError(error.response.data.message);
+        console.log(error.response.status);
+        if (error.response.status === 401) {
+          setError("You are not authorized. Please log in first.");
+        }
         setLoading(false);
       }
     };
@@ -32,59 +36,81 @@ const ProblemList = () => {
   }, [page]);
 
   const handlenavigation = (problemID) => {
-    // Use the `navigate` function to navigate to the problem page
-    console.log(problemID);
     navigate(`/problem/${problemID}`);
   };
 
   return (
-    <div className="problem-list-container">
-      <h1>Problems List</h1>
+    <>
       {loading ? (
         <LoadingComponent />
       ) : error ? (
-        <p className="error">Error: {error}</p>
-      ) : (
-        <div>
-          <div className="problemset-container">
-            <h1 className="problemset-heading">Problem Set</h1>
-            <div className="problemset-table-container">
-              <table className="problemset-table">
-                <thead>
-                  <tr>
-                    <th>Serial No.</th>
-                    <th>Title</th>
-                    <th>Difficulty</th>
-                    <th>Tags</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {problems.map((problem, index) => (
-                    <tr
-                      key={problem._id}
-                      onClick={() => handlenavigation(problem._id)}
-                    >
-                      <td>{index + 1}</td>
-                      <td>{problem.title}</td>
-                      <td>{problem.difficulty}</td>
-                      <td>{problem.problemType}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div className="pagination-buttons">
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              Previous
-            </button>
-            <button onClick={() => setPage(page + 1)} disabled={page === pages}>
-              Next
-            </button>
-          </div>
+        <div className="flex justify-center items-center h-screen">
+          <p className="font-mono text-red-500">{error}</p>
         </div>
+      ) : (
+        <>
+          <h3 className="font-mono font-bold text-3xl ml-8 text-blueGray-700">
+            Problem Set
+          </h3>
+          <div className="overflow-x-auto border border-black m-4">
+            <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+              <thead className="ltr:text-left rtl:text-right ">
+                <tr>
+                  <th className="whitespace-nowrap px-4 py-2 text-lg font-medium text-gray-900">
+                    Title
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-lg text-gray-900">
+                    Difficulty
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-lg text-gray-900">
+                    Tags
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody className="divide-y divide-gray-200">
+                {problems.map((problem) => (
+                  <tr
+                    key={problem._id}
+                    onClick={() => handlenavigation(problem._id)}
+                  >
+                    <td className="whitespace-nowrap px-4 py-2 text-base font-medium text-gray-900">
+                      {problem.title}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-base ">
+                      {problem.difficulty}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-base ">
+                      {problem.problemType}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="flex justify-center mt-4 space-x-4">
+            {pages > 1 && (
+              <>
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l"
+                  onClick={() => setPage(page - 1)}
+                  disabled={page === 1}
+                >
+                  Previous
+                </button>
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r"
+                  onClick={() => setPage(page + 1)}
+                  disabled={page === pages}
+                >
+                  Next
+                </button>
+              </>
+            )}
+          </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 
