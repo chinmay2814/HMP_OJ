@@ -11,7 +11,7 @@ exports.allUsers = async (req, res, next) => {
 
   try {
     const users = await User.find()
-      .sort({ createdAt: -1 })
+      .sort({ pointsEarned: -1 })
       .select("-password")
       .skip(pageSize * (page - 1))
       .limit(pageSize);
@@ -28,7 +28,6 @@ exports.allUsers = async (req, res, next) => {
     return next(error);
   }
 };
-
 //show single user
 exports.singleUser = async (req, res, next) => {
   try {
