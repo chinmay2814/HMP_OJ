@@ -2,11 +2,13 @@
 
 HMP_OJ is an online judge system for competitive programming built with modern technologies. It provides a comprehensive platform for users to practice coding problems, submit solutions, and get feedback on their submissions.
 
+
+
 ## Team Members
 
 1. Chinmay Malve (20225028) https://github.com/chinmay2814
 2. Keshav Diwakar (2025043) https://github.com/Keshav1707
-3. Subrat Shakya () https://github.com/subratshakya
+3. Subrat Shakya (20226146) https://github.com/subratshakya
 4. Priyanshu Anand (20225065) https://github.com/priyanshuanandd
 
 ## Tech Stack
