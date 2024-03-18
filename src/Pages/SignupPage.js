@@ -140,7 +140,7 @@ const SignupPage = () => {
               >
                 <span class="absolute inset-0 translate-x-0 translate-y-0 bg-gray-800 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5"></span>
 
-                <span class="relative block border border-current bg-white px-8 py-3">
+                <span class="relative block border border-black bg-white px-8 py-2">
                 <button type="submit"  >
                 Sign Up
               </button>
