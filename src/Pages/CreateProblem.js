@@ -24,7 +24,12 @@ const ProblemForm = () => {
   const handleDescriptionChange = (content) => {
     setDescription(content);
   };
-
+  const handleInputChange = (content) => {
+    setInput(content);
+  };
+  const handleOutputChange = (content) => {
+    setOutput(content);
+  };
   const handleTestcaseInputChange = (event) => {
     setTestcaseInput(event.target.value);
   };
@@ -172,7 +177,7 @@ const ProblemForm = () => {
             <ReactQuill
               id="input"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={handleInputChange}
               className="font-mono border border-gray-300 rounded focus:outline-none "
             />
           </div>
@@ -185,7 +190,7 @@ const ProblemForm = () => {
             <ReactQuill
               id="output"
               value={output}
-              onChange={(e) => setOutput(e.target.value)}
+              onChange={handleOutputChange}
               className="font-mono border border-gray-300 rounded focus:outline-none "
             />
           </div>

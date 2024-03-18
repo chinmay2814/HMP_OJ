@@ -63,7 +63,7 @@ const BlogContent = () => {
                 src={`https://robohash.org/${blog?.data?.data?.authorName}?size=150x150`}
                 alt={blog?.data?.data?.authorName}
               />
-              <NavLink exact to={`/users/${blog?.data?.data?.authorName}`}>
+              <NavLink exact>
                 <h1 className="font-bold text-xl text-gray-900 my-3">
                   {blog?.data?.data?.authorName}
                 </h1>
