@@ -14,13 +14,20 @@ const DefaultPage = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          minHeight: "100vh", // Change height to minHeight for better responsiveness
+          backgroundColor: "#f0f0f0", // Add a background color
         }}
       >
         <div style={{ textAlign: "center" }}>
-          <h1>404 - Page Not Found</h1>
-          <p>The page you are looking for does not exist.</p>
-          <video autoPlay loop style={{ width: "50%", maxWidth: "800px" }}>
+          <h1 style={{ marginBottom: "20px" }}>404 - Page Not Found</h1>
+          <p style={{ marginBottom: "20px" }}>
+            The page you are looking for does not exist.
+          </p>
+          <video
+            autoPlay
+            loop
+            style={{ width: "160%", maxWidth: "800px", borderRadius: "8px" }} // Adjust video width and add border radius
+          >
             <source src={videoSource} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
