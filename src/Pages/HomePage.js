@@ -31,8 +31,8 @@ const Homepage = () => {
   const storedUser = localStorage.getItem("user");
   if (storedUser) {
     const user = JSON.parse(storedUser);
-    // Now you can use the user data as needed
-    console.log("User data:", user);
+
+    //console.log("User data:", user);
   } else {
     console.log("not logged in");
     // User data not found in localStorage, handle accordingly

@@ -19,16 +19,16 @@ function Header() {
   // Usage:
   const cookieName = "token"; // Change this to your cookie name
   const cookieExists = isCookieAvailable(cookieName);
-  console.log("Cookie exists:", cookieExists);
+  //console.log("Cookie exists:", cookieExists);
 
   if (cookieExists) {
     const userData = JSON.parse(storedUser);
     // Now you can use the user data as needed
     userName = userData.user.userName;
 
-    console.log("User :", userName);
+    // console.log("User :", userName);
   } else {
-    console.log("not logged in");
+    //console.log("not logged in");
     // User data not found in localStorage, handle accordingly
   }
 
@@ -81,8 +81,8 @@ function Header() {
       <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-14 items-center justify-between">
           <div class="flex-1 md:flex md:items-center md:gap-12">
-            <NavLink exact to="/">
-              <a class="" exact to="/">
+            <NavLink exact="true" to="/">
+              <a class="" exact="true" to="/">
                 <span onClick={handleClick}></span>
                 <img
                   src={codeIconGIF}
@@ -97,7 +97,7 @@ function Header() {
             <nav aria-label="Global" class="hidden md:block">
               <ul class="flex items-center gap-10 text-sm mr-20">
                 <li class="flex items-center h-full">
-                  <NavLink exact to="/problemset">
+                  <NavLink exact="true" to="/problemset">
                     <a
                       class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
                       href="#"
@@ -106,9 +106,9 @@ function Header() {
                     </a>
                   </NavLink>
                 </li>
-                
+
                 <li class="flex items-center h-full">
-                  <NavLink exact to="/chat">
+                  <NavLink exact="true" to="/contest">
                     <a
                       class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
                       href="#"
@@ -118,7 +118,7 @@ function Header() {
                   </NavLink>
                 </li>
                 <li class="flex items-center h-full">
-                  <NavLink exact="true" to="/blogs">
+                  <NavLink exact="true" to="/chat">
                     <a
                       class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
                       href="#"

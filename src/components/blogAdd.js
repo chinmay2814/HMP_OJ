@@ -54,8 +54,8 @@ const AddBlogForm = () => {
       );
       toast.success("Blog Created");
       Navigate("/blogs");
-      console.log(response); // Response from the server
-      // Redirect to /blogs
+      // Response from the server
+      // Optionally, redirect to another page or show a success message
     } catch (error) {
       console.error("Error:", error);
       if (error.response.status === 403) {

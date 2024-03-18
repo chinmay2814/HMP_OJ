@@ -44,7 +44,6 @@ const SignupPage = () => {
         if (response.status === 200) {
           const user = response.data;
           // Handle successful signup
-          console.log("signup successful:", user);
           toast.success("Signup successful!");
           navigate("/login");
         } else {

@@ -15,7 +15,7 @@ const Footer = () => {
       <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2024{" "}
-          <a href="./" class="hover:underline text-black">
+          <a href="" class="hover:underline">
             HMP OJ
           </a>
           . All Rights Reserved.
@@ -23,17 +23,13 @@ const Footer = () => {
         <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
             <NavLink exact to="/about">
-            <a  class="hover:underline me-4 md:me-6 text-black">
-              About
-            </a>
+              <a class="hover:underline me-4 md:me-6 text-black">About</a>
             </NavLink>
           </li>
 
           <li>
             <NavLink exact to="/contact">
-            <a class="hover:underline text-black">
-              Contact
-            </a>
+              <a class="hover:underline text-black">Contact</a>
             </NavLink>
           </li>
         </ul>

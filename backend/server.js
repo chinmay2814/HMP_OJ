@@ -1,51 +1,27 @@
 const express = require("express");
-const app = express();
+const http = require("http");
+const socketIO = require("socket.io");
 const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 const mongoose = require("mongoose");
-//passport auth
-const passport = require("passport");
-//require("./middleware/auth.js");
-
-//
 require("dotenv").config();
 
-// const jwtSecret = process.env.JWT_SECRET;
-// console.log(jwtSecret);
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
-//import Routes
-const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
-//const problemTypeRoutes=require("./routes/problemTypeRoutes.js");
-const problemRoutes = require("./routes/problemRoutes.js");
-const blogRoutes = require("./routes/blogRoutes");
-
-// app.get('/', (req, res) => {
-//   res.send('Hello, World!');
-// });
-//passport
-
-// app.get(
-//   "api/auth",
-//   passport.authenticate("google", { scope: ["email", "profile"] })
-// );
-//database
 mongoose
-  .connect("mongodb://127.0.0.1:27017/HMP_OJ_DB", {
-    //useNewUrlParser: true,
-    //useUnifiedTopology: true,
-  })
+  .connect("mongodb://127.0.0.1:27017/HMP_OJ_DB", {})
   .then(() => console.log("MongoDb connected"))
   .catch((err) => console.log("MongoDb error", err));
 
-//middleware
 app.use(
   cors({
-    origin: "http://localhost:5001", // Set the origin to your frontend domain
-    credentials: true, // Allow credentials (cookies)
+    origin: "http://localhost:5001", // Replace with your frontend URL
+    credentials: true,
   })
 );
 app.options("*", cors());
@@ -58,71 +34,42 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.get;
 
-//routes middleware
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  socket.on("newuser", (username) => {
+    console.log(username + " joined the conversation");
+    socket.broadcast.emit("update", username + " joined the conversation");
+  });
+
+  socket.on("exituser", (username) => {
+    console.log(username + " left the conversation");
+    socket.broadcast.emit("update", username + " left the conversation");
+  });
+
+  socket.on("chat", (message) => {
+    console.log("New message:", message);
+    socket.broadcast.emit("chat", message);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("A user disconnected");
+  });
+});
+
+// Routes
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const problemRoutes = require("./routes/problemRoutes.js");
+const blogRoutes = require("./routes/blogRoutes");
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
-//app.use("/api",problemTypeRoutes);
 app.use("/api", problemRoutes);
 app.use("/api", blogRoutes);
-// //api for comilation
-// const axios = require('axios');
 
-// const cppcode = `#include <iostream>
-// using namespace std;
-
-// int main() {
-//     int x ;
-//     int y ;
-//     cin >>x >>y;
-//     int sum = x + y;
-//     cout << sum;
-//     return 0;
-// }`;
-
-// const exout='5';
-
-// const options = {
-//     method: 'POST',
-//     url: 'https://judge0-ce.p.rapidapi.com/submissions',
-//     params: {
-//         base64_encoded: 'false',
-//         wait: 'true',
-//         fields: '*'
-//     },
-//     headers: {
-//         'content-type': 'application/json',
-//         'X-RapidAPI-Key': '18f758967emsh70d88d5f7e10e13p14acffjsne5bf2100c38d',
-//         'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
-//     },
-//     data: {
-//         language_id: 52,
-//         source_code: cppcode,
-//         stdin: '5 2\n',
-//         expected_output:exout
-//     }
-// };
-
-// const sendCodeToCompiler = async () => {
-//     try {
-//         const response = await axios.request(options);
-//         console.log(response.data);
-//         //console.log()
-//         console.log(response.data.stdout==response.data.expected_output); //prints the output of the program
-//     } catch (error) {
-//         console.error(error);
-//     }
-// };
-
-// sendCodeToCompiler();
-
-//error middleware
+// Error middleware
 app.use(errorHandler);
-//
 
-//port
-//const PORT = process.env.PORT ;
-const PORT = 5000;
-
-app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
