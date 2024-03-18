@@ -1,7 +1,7 @@
 # HMP_OJ
 
 HMP_OJ is an online judge system for competitive programming built with modern technologies. It provides a comprehensive platform for users to practice coding problems, submit solutions, and get feedback on their submissions.
-![Alt text](NIT_Allahabad_Resume (2).pdf)
+
 
 
 ## Team Members
