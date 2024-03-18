@@ -127,7 +127,6 @@ function SubmissionPage() {
             (obj) => obj.status.description
           );
           setStatusDescriptions(descriptions);
-          console.log(descriptions);
           var isAccepted = true;
           descriptions.forEach((status) => {
             if (status !== "Accepted") {
@@ -150,11 +149,9 @@ function SubmissionPage() {
               { isAccepted, problemId }
             );
             setResponse(response.data);
-            console.log(response, "put");
           } catch (error) {
             setError(error.response.data.message || "An error occurred.");
           }
-          console.log(isAccepted);
         } catch (error) {
           console.error(error);
         } finally {

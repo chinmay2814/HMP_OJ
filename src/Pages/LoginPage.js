@@ -27,7 +27,6 @@ const LoginPage = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hi");
 
     try {
       axios.defaults.withCredentials = true;
@@ -39,20 +38,18 @@ const LoginPage = () => {
         const user = await response.data;
         // Handle successful login
         localStorage.setItem("user", JSON.stringify(user));
-        console.log("Login successful:", user);
         toast.success("Login successful!");
         navigate("/");
-      } else {
-        toast.info("Check your Credentials");
-        console.error("Login failed");
       }
     } catch (error) {
-      toast.error("server error");
-      console.error("Error:", error);
+      if (error.response.status == 400) {
+        toast.info("Check your Credentials");
+      } else {
+        toast.error("server error");
+      }
     }
   };
 
-  const handleGoogle = async (e) => {};
   return (
     <>
       <div class="bg-gray-50 font-mono text-[#333]">
@@ -67,7 +64,7 @@ const LoginPage = () => {
                   value={userName}
                   required
                   class="w-full text-sm px-4 py-3 rounded outline-none border-2 focus:border-blue-500"
-                  placeholder="Email address"
+                  placeholder="User Name"
                   onChange={handleUsernameChange}
                 />
               </div>
@@ -109,7 +106,7 @@ const LoginPage = () => {
                 class="w-full py-2.5 px-4 text-sm rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                 onClick={handleSignUp}
               >
-                SignUp Instead
+                Create User
               </button>
             </form>
           </div>

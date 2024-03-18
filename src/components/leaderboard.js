@@ -30,7 +30,6 @@ function LeaderboardComponent() {
   }, []);
   const handleUserclick = (userID) => {
     // Use the `navigate` function to navigate to the problem page
-    console.log(userID);
     navigate(`/profile/${userID}`);
   };
   if (loading) {

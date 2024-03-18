@@ -46,7 +46,6 @@ const Dashboard = () => {
         const response = await axios.get(
           `http://localhost:5000/api/user/${username}`
         );
-        console.log(response);
         setUser(response.data.user);
         if (response.data.user.role === 1) setIsAdmin(true);
         setLoading(false);

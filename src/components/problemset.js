@@ -24,7 +24,7 @@ const ProblemList = () => {
         setLoading(false);
       } catch (error) {
         setError(error.response.data.message);
-        console.log(error.response.status);
+
         if (error.response.status === 401) {
           setError("You are not authorized. Please log in first.");
         }

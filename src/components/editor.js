@@ -32,7 +32,7 @@ const Editor = ({ value, onChange }) => {
     editorRef.current.on("change", () => {
       const newValue = editorRef.current.getValue();
       onChange(newValue);
-      console.log("Code changed:", newValue); // Console log when code changes
+      //console.log("Code changed:", newValue); // Console log when code changes
     });
   };
 

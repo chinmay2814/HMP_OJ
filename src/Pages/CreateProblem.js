@@ -4,7 +4,8 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import Footer from "../components/footer";
 import Header from "../components/header";
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const ProblemForm = () => {
   const [title, setTitle] = useState("");
   const [timeLimit, setTimeLimit] = useState("");
@@ -19,7 +20,7 @@ const ProblemForm = () => {
   const [testcaseOutput, setTestcaseOutput] = useState("");
   const [sampleInput, setSampleInput] = useState("");
   const [sampleOutput, setSampleOutput] = useState("");
-
+  const nav = useNavigate();
   const handleDescriptionChange = (content) => {
     setDescription(content);
   };
@@ -75,7 +76,7 @@ const ProblemForm = () => {
       sampleTest,
       testcases,
       problemType,
-      user: "65ef59e62965aa0a3e11c178", // Replace with the actual user ID
+      user: "65ef59e62965aa0a3e11c178",
     };
 
     try {
@@ -83,8 +84,10 @@ const ProblemForm = () => {
         "http://localhost:5000/api/newproblem",
         formData
       );
-      console.log(response);
+      toast.success("Problem Created");
+      nav("/problemset");
     } catch (error) {
+      toast.error("Error. Please Try Again");
       console.error("Error:", error);
     }
   };

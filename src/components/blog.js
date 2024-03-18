@@ -15,7 +15,6 @@ const Blogs = () => {
       try {
         axios.defaults.withCredentials = true;
         const res = await axios.get(`http://localhost:5000/api/blogs`);
-        console.log(res);
         setBlogRes(res);
         setLoading(false);
       } catch (error) {

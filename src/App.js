@@ -14,6 +14,7 @@ import ProblemForm from "./Pages/CreateProblem";
 import BlogShow from "./Pages/BlogShow";
 import AddBlogForm from "./components/blogAdd";
 import BlogCreate from "./Pages/CreateBlog";
+import Chatroom from "./Pages/Chat";
 function App() {
   return (
     <>
@@ -33,6 +34,7 @@ function App() {
           <Route path={`/problem/:problemid`} element={<ProblemPage />}></Route>
           <Route path={"/createblog"} element={<BlogCreate />}></Route>
           <Route path={"/createProblem"} element={<ProblemForm />}></Route>
+          <Route path="/chat" element={<Chatroom />}></Route>
           <Route path="*" element={<DefaultPage />} />
         </Routes>
       </BrowserRouter>

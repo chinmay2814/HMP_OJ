@@ -5,7 +5,7 @@ import LoadingComponent from "./loading";
 import axios from "axios";
 const BlogContent = () => {
   const id = useParams();
-  console.log(id);
+
   const [blog, setBlog] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const BlogContent = () => {
         setLoading(false);
       } catch (error) {
         setError(error);
-        console.log(error);
+        //console.log(error);
         setLoading(false);
       }
     };
