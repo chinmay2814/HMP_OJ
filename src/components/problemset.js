@@ -49,20 +49,20 @@ const ProblemList = () => {
         </div>
       ) : (
         <>
-          <h3 className="font-mono font-bold text-lg text-blueGray-700">
+          <h3 className="font-mono font-bold text-3xl ml-8 text-blueGray-700">
             Problem Set
           </h3>
           <div className="overflow-x-auto border border-black m-4">
             <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
               <thead className="ltr:text-left rtl:text-right ">
                 <tr>
-                  <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <th className="whitespace-nowrap px-4 py-2 text-lg font-medium text-gray-900">
                     Title
                   </th>
-                  <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-lg text-gray-900">
                     Difficulty
                   </th>
-                  <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-lg text-gray-900">
                     Tags
                   </th>
                 </tr>
@@ -74,13 +74,13 @@ const ProblemList = () => {
                     key={problem._id}
                     onClick={() => handlenavigation(problem._id)}
                   >
-                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                    <td className="whitespace-nowrap px-4 py-2 text-base font-medium text-gray-900">
                       {problem.title}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-base ">
                       {problem.difficulty}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-base ">
                       {problem.problemType}
                     </td>
                   </tr>
@@ -92,14 +92,14 @@ const ProblemList = () => {
             {pages > 1 && (
               <>
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l"
+                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-l"
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
                 >
                   Previous
                 </button>
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r"
+                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r"
                   onClick={() => setPage(page + 1)}
                   disabled={page === pages}
                 >

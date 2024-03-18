@@ -54,7 +54,7 @@ const LoginPage = () => {
     <>
       <div class="bg-gray-50 font-mono text-[#333]">
         <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
-          <div class="max-w-md w-full border py-8 px-6 rounded border-gray-300 bg-white">
+          <div class="max-w-md w-full border py-8 px-6 rounded-xl shadow-lg border-gray-300 bg-white">
             <h2 class="text-center text-3xl font-extrabold">Login</h2>
             <form class="mt-10 space-y-4" onSubmit={handleSubmit}>
               <div>
@@ -74,7 +74,7 @@ const LoginPage = () => {
                   id="password"
                   value={password}
                   required
-                  class="w-full text-sm px-4 py-3 rounded outline-none border-2 focus:border-blue-500"
+                  class="w-full text-sm px-4 py-3 rounded outline-none border-2 focus:border-gray-500"
                   placeholder="Password"
                   onChange={handlePasswordChange}
                 />
@@ -82,7 +82,7 @@ const LoginPage = () => {
               <div class="flex items-center justify-between gap-4">
                 <div class="flex items-center">
                   <input
-                    class="h-4 w-4 ml-1 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    class="h-4 w-4 ml-1 shrink-0 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
                     type="checkbox"
                     id="showPasswordCheckbox"
                     checked={showPassword}
@@ -93,21 +93,23 @@ const LoginPage = () => {
                   Show password
                 </label>
               </div>
-
+{/* 
               <button
                 type="submit"
-                class="w-full py-2.5 px-4 text-sm rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
-                onClick={handleSubmit}
+                class="w-full py-2.5 px-4 text-sm rounded text-white bg-gray-600 hover:bg-gray-700 focus:outline-none"
+               
               >
                 Login
               </button>
               <button
                 type="submit"
-                class="w-full py-2.5 px-4 text-sm rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
-                onClick={handleSignUp}
+                class="w-full py-2.5 px-4 text-sm rounded text-white bg-gray-600 hover:bg-gray-700 focus:outline-none"
+                
               >
                 Create User
               </button>
+                </span>
+              </a>
             </form>
           </div>
         </div>

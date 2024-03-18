@@ -63,10 +63,12 @@ const SignupPage = () => {
       <div className="loginbody">
         <div className="wrapper">
           <div className="form-box login">
-            <h2>Sign Up</h2>
+            <h2 class="font-mono">Sign Up</h2>
             <form onSubmit={handleSubmit}>
               <div className="input-box">
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="name" class="font-mono">
+                  Name:
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -77,7 +79,9 @@ const SignupPage = () => {
                 />
               </div>
               <div className="input-box">
-                <label htmlFor="userName">userName:</label>
+                <label htmlFor="userName" class="font-mono">
+                  userName:
+                </label>
                 <input
                   type="text"
                   id="userName"
@@ -88,7 +92,9 @@ const SignupPage = () => {
                 />
               </div>
               <div className="input-box">
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email" class="font-mono">
+                  Email:
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -99,7 +105,9 @@ const SignupPage = () => {
                 />
               </div>
               <div className="input-box">
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password" class="font-mono">
+                  Password:
+                </label>
                 <input
                   type="password"
                   id="password"
@@ -110,7 +118,9 @@ const SignupPage = () => {
                 />
               </div>
               <div className="input-box">
-                <label htmlFor="confirmPassword">Confirm Password:</label>
+                <label htmlFor="confirmPassword" class="font-mono">
+                  Confirm Password:
+                </label>
                 <input
                   type="password"
                   id="confirmPassword"
@@ -124,10 +134,19 @@ const SignupPage = () => {
               {passwordError && (
                 <p className="error-message">{passwordError}</p>
               )}
+              <a
+                class="group  relative inline-block text-sm font-medium text-gray-800 focus:outline-none focus:ring active:text-gray-500"
+              >
+                <span class="absolute inset-0 translate-x-0 translate-y-0 bg-gray-800 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5"></span>
 
-              <button type="submit" className="btn">
+                <span class="relative block border border-black bg-white px-8 py-2">
+                <button type="submit"  >
                 Sign Up
               </button>
+                </span>
+              </a>
+
+              
             </form>
           </div>
         </div>

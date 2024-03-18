@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import codeIconGIF from "../images/HMP-OJ-unscreen.png";
 import codeIconGIFBlack from "../images/HMP-OJ-unscreen2.png";
 // import "../CSS/Default.css";
-
+import { NavLink } from "react-router-dom";
 const Footer = () => {
   const [isBlackTheme, setIsBlackTheme] = useState(false);
 
@@ -22,15 +22,15 @@ const Footer = () => {
         </span>
         <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
-            <a href="#" class="hover:underline me-4 md:me-6">
-              About
-            </a>
+            <NavLink exact to="/about">
+              <a class="hover:underline me-4 md:me-6 text-black">About</a>
+            </NavLink>
           </li>
 
           <li>
-            <a href="#" class="hover:underline">
-              Contact
-            </a>
+            <NavLink exact to="/contact">
+              <a class="hover:underline text-black">Contact</a>
+            </NavLink>
           </li>
         </ul>
       </div>

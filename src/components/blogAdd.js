@@ -65,7 +65,6 @@ const AddBlogForm = () => {
       // Handle error (e.g., show error message to the user)
     }
   };
-
   return (
     <div className="font-mono container mx-auto px-4 py-8">
       {error ? (

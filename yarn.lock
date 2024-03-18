@@ -1688,6 +1688,11 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@moezx/darkreader@^4.9.43":
+  version "4.9.43"
+  resolved "https://registry.yarnpkg.com/@moezx/darkreader/-/darkreader-4.9.43.tgz#b9974b227a1d592b5c9a90487c438300dc5a8a6d"
+  integrity sha512-EFpQflF8JgEUIjqIsuQuffzJF/mpIwbVGdwQq9F0T3Igk4tmZF4vlef35M1T3WeHZcpdJQdmh7NCfzyjBx8QIA==
+
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz#dbf733a965ca47b1973177dc0bb6c889edcfb129"
@@ -4055,6 +4060,11 @@ damerau-levenshtein@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
+
+darkreader@^4.9.80:
+  version "4.9.80"
+  resolved "https://registry.yarnpkg.com/darkreader/-/darkreader-4.9.80.tgz#9dc1a7763bb19143ed4e5c9a87d1a6fe792d7edc"
+  integrity sha512-4MxER8urVmzpf0Z98PGj9Z0nL8ZfAhIZLLcWtdTfy/xM15ciGIOSiRa+0DqJ52euiMBr5CH8DutEVLaDho0naA==
 
 data-urls@^2.0.0:
   version "2.0.0"

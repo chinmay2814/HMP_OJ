@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
 import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import axios from "axios";
 import codeIconGIF from "../images/HMP-OJ-unscreen.png";
@@ -89,7 +88,7 @@ function Header() {
                   src={codeIconGIF}
                   to="/"
                   alt="Code Icon"
-                  class="h-12  w-auto"
+                  class="h-11  w-auto"
                 />
               </a>
             </NavLink>
@@ -107,18 +106,9 @@ function Header() {
                     </a>
                   </NavLink>
                 </li>
+
                 <li class="flex items-center h-full">
                   <NavLink exact="true" to="/contest">
-                    <a
-                      class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
-                      href="#"
-                    >
-                      Contest
-                    </a>
-                  </NavLink>
-                </li>
-                <li class="flex items-center h-full">
-                  <NavLink exact="true" to="/chat">
                     <a
                       class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
                       href="#"
@@ -128,12 +118,22 @@ function Header() {
                   </NavLink>
                 </li>
                 <li class="flex items-center h-full">
-                  <NavLink exact="true" to="/blogs">
+                  <NavLink exact="true" to="/chat">
                     <a
                       class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
                       href="#"
                     >
                       Blog
+                    </a>
+                  </NavLink>
+                </li>
+                <li class="flex items-center h-full">
+                  <NavLink exact to="/about">
+                    <a
+                      class="text-black  hover:scale-110 dark:text-white font-mono text-lg flex items-center h-full mt-4"
+                      href="#"
+                    >
+                      About
                     </a>
                   </NavLink>
                 </li>
@@ -163,7 +163,7 @@ function Header() {
                     <button
                       type="button"
                       onClick={loginclick}
-                      class="inline-block rounded bg-neutral-100 px-6 py-2 pb-2 pt-2.5 text-lg font-mono underline leading-normal text-neutral-600 shadow-light-3 transition duration-150 ease-in-out hover:bg-neutral-200 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                      class="inline-block rounded bg-neutral-100 px-6 py-2 pb-2 pt- text-lg font-mono underline leading-normal text-neutral-600 shadow-light-3 transition duration-150 ease-in-out hover:bg-neutral-200 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
                     >
                       Login
                     </button>
@@ -251,7 +251,7 @@ function Header() {
                         onClick={handleUserClick}
                       >
                         <NavLink onClick={handleUserClick}>
-                          <a class="text-black border rounded-lg px-2 py-2.5 hover:scale-105 dark:text-white font-mono text-lg flex items-center h-full mt-2">
+                          <a class="text-black border rounded-lg px-2 py-2  hover:scale-105 dark:text-white font-mono text-lg flex items-center h-full mt-2">
                             {userName}
                           </a>
                         </NavLink>
@@ -277,7 +277,7 @@ function Header() {
                       <button
                         onClick={signupclick}
                         type="button"
-                        class="inline-block rounded bg-gray-500 font-mono px-6 py-2 pb-2 pt-2.5 text-lg font-medium underline leading-normal text-neutral-50 shadow-dark-3 transition duration-150 ease-in-out hover:bg-neutral-700 hover:shadow-dark-2 focus:bg-neutral-700 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-dark-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                        class="inline-block rounded bg-gray-500 font-mono px-6 py-2 pb-2 pt-2 text-lg font-medium underline leading-normal text-neutral-50 shadow-dark-3 transition duration-150 ease-in-out hover:bg-neutral-700 hover:shadow-dark-2 focus:bg-neutral-700 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-dark-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
                       >
                         Signup
                       </button>

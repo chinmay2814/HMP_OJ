@@ -66,12 +66,12 @@ const ProblemPage = () => {
       <Header />
       <div className="font-mono container mx-auto px-4">
         <header className="font-mono header bg-gray-900 text-white py-5 text-center">
-          <h1 className="font-mono title text-xl md:text-3xl">
+          <h1 className="font-mono title text-xl font-extrabold md:text-3xl">
             {problem.title}
           </h1>
           <div className="font-mono constraints">
             <h6 className="font-mono section-title text-lg md:text-xl">
-              Time limit :{problem.timeLimit}
+              Time limit :{problem.timeLimit} seconds
             </h6>
           </div>
         </header>
@@ -115,7 +115,7 @@ const ProblemPage = () => {
                   {problem.sampleTest.input}
                 </pre>
                 <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2"
+                  className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-2"
                   onClick={handleCopyInput}
                 >
                   Copy Input
@@ -127,7 +127,7 @@ const ProblemPage = () => {
                   {problem.sampleTest.output}
                 </pre>
                 <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2"
+                  className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-2"
                   onClick={handleCopyOutput}
                 >
                   Copy Output
@@ -136,7 +136,7 @@ const ProblemPage = () => {
             </div>
           </div>
           <button
-            className="font-mono submitbtn bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 block mx-auto"
+            className="font-mono submitbtn bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-4 block mx-auto"
             onClick={handleSubmit}
           >
             Submit Code

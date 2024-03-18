@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import LoadingComponent from "./loading";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 const BlogContent = () => {
   const id = useParams();
 
   const [blog, setBlog] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -34,40 +36,39 @@ const BlogContent = () => {
   if (error) return <p>Error!</p>;
 
   return (
-    <div className="font-mono w-full pb-10 bg-[#f9f9f9]">
-      <div className="font-mono max-w-[1240px] mx-auto">
-        <div
-          className="font-mono grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 ss:grid-cols-1
-            md:gap-x-8 sm:gap-y-8 ss:gap-y-8 px-4 sm:pt-20 md:mt-0 ss:pt-20 text-black"
-        >
-          <div className="font-mono col-span-2 ">
+    <div className="font-mono w-full pb-10 bg-gray-100">
+      <div className="max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="col-span-2">
             <img
-              className="font-mono h-56 w-full object-cover"
-              src={`https://img.freepik.com/free-photo/toy-bricks-table_144627-48267.jpg?w=1060&t=st=1710578482~exp=1710579082~hmac=96da3e2ff43cf0872c21a635d91cbf095ef7f24ea7048e3d28f1df931dda84db`}
-              alt={blog.data.data.blogTitle}
+              className="w-full h-56 rounded-lg object-cover shadow-md"
+              src="https://preview.redd.it/injl33v9myl51.jpg?width=1080&crop=smart&auto=webp&s=7c193242bc6bc2201d2108fee340ea934d3b5899"
+              alt={blog?.data?.data?.blogTitle}
             />
-            <h1 className="font-mono font-bold text-2xl my-1 pt-5">
-              {blog.data.data.blogTitle}
+            <h1 className="font-bold text-2xl my-4">
+              {blog?.data?.data?.blogTitle}
             </h1>
             <div
-              className="font-mono pt-5"
-              dangerouslySetInnerHTML={{ __html: blog.data.data.blogContent }}
+              className="text-gray-800"
+              dangerouslySetInnerHTML={{
+                __html: blog?.data?.data?.blogContent,
+              }}
             />
           </div>
-
-          <div className="font-mono items-center w-full bg-white rounded-xl drop-shadow-md py-5 max-h-[250px]">
-            <div>
+          {/* <NavLink exact to= "/" */}
+          <div className="bg-white rounded-xl p-5">
+            <div className="flex flex-col items-center">
               <img
-                className="font-mono h-48 w-full object-cover"
-                src={`https://robohash.org/${blog.data.data.authorName}?size =300x300`} // Use proper null checks
-                alt={blog?.blogTitle} // Use proper null checks
+                className="w-24 h-24 rounded-full object-cover"
+                src={`https://robohash.org/${blog?.data?.data?.authorName}?size=150x150`}
+                alt={blog?.data?.data?.authorName}
               />
-              <h1 className="font-mono font-bold text-2xl text-center text-gray-900 pt-3">
-                {blog.data.data.authorName}
-              </h1>
-              <p className="font-mono text-center text-gray-900 font-medium">
-                {blog.data.data.authorDesc}
-              </p>
+              <NavLink exact to={`/users/${blog?.data?.data?.authorName}`}>
+                <h1 className="font-bold text-xl text-gray-900 my-3">
+                  {blog?.data?.data?.authorName}
+                </h1>
+              </NavLink>
+              <p className="text-gray-700">{blog?.data?.data?.authorDesc}</p>
             </div>
           </div>
         </div>
