@@ -96,10 +96,10 @@ const Chatroom = () => {
         {showChatroom ? (
           <>
             <div className="flex justify-between items-center bg-gray-800 text-white p-4">
-              <h2 className="text-xl font-bold">Global Chatroom</h2>
+              <h2 className="text-2xl  underline font-mono font-bold">Global Chatroom</h2>
               <button
                 id="exit-chat"
-                className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600"
+                className="bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-600"
                 onClick={handleExit}
               >
                 Exit
@@ -125,10 +125,15 @@ const Chatroom = () => {
                 placeholder="Type your message here..."
                 value={messageInput}
                 onChange={(e) => setMessageInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault(); // Prevents the default action of pressing Enter (usually submitting forms)
+                    handleSendMessage();
+                  }}}
               />
               <button
                 id="send-message"
-                className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+                className="bg-gray-800 text-white font-bold py-2 px-4 rounded hover:bg-gray-500"
                 onClick={handleSendMessage}
               >
                 Send

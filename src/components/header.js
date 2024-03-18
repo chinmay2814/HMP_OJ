@@ -231,6 +231,7 @@ function Header() {
                         href="#"
                       >
                         Chat
+                        
                       </a>
                     </NavLink>
                   </li>
