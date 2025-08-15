@@ -79,7 +79,7 @@ Update the `.env` file with your desired configuration settings, such as databas
     yarn server:dev
 
 The application should now be accessible at `http://localhost:5001`.
-
+https://www.mindmeister.com/app/map/3784840003
 [![image.png](https://i.postimg.cc/9F0vNDHD/image.png)](https://postimg.cc/zVmtyXBN)
 [![image.png](https://i.postimg.cc/d02XTdrx/image.png)](https://postimg.cc/jWjvpD8H)
 
