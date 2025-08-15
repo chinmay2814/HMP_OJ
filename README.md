@@ -80,6 +80,9 @@ Update the `.env` file with your desired configuration settings, such as databas
 
 The application should now be accessible at `http://localhost:5001`.
 
+[![image.png](https://i.postimg.cc/9F0vNDHD/image.png)](https://postimg.cc/zVmtyXBN)
+[![image.png](https://i.postimg.cc/d02XTdrx/image.png)](https://postimg.cc/jWjvpD8H)
+
 ## Contributing
 
 Contributions to HMP_OJ are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the GitHub repository.
