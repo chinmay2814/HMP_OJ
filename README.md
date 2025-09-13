@@ -82,7 +82,7 @@ The application should now be accessible at `http://localhost:5001`.
 [https://www.mindmeister.com/app/map/3784840003](https://mm.tt/map/3784840003?t=DRRCrVPuCr)
 [![image.png](https://i.postimg.cc/9F0vNDHD/image.png)](https://postimg.cc/zVmtyXBN)
 [![image.png](https://i.postimg.cc/d02XTdrx/image.png)](https://postimg.cc/jWjvpD8H)
-
+[![image.png](https://i.postimg.cc/KvgN7kNM/image.png)](https://postimg.cc/7fw0wLjH)
 ## Contributing
 
 Contributions to HMP_OJ are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the GitHub repository.
