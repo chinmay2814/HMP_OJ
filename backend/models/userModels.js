@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-//const Problem=require("../models/problemModel");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 //
@@ -37,7 +36,6 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "password must have at least (6) characters"],
     },
 
-    //extra data
     solvedProblems: {
       type: [{ type: ObjectId, ref: "Problem" }],
       default: [],
@@ -60,11 +58,12 @@ const userSchema = new mongoose.Schema(
 );
 
 //encrypting password before saving
+// when .save() runs , before that this is done
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
-  this.password = await bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);// salt factor of 10
 });
 
 // compare user password

@@ -1,6 +1,21 @@
 const User = require("../models/userModels");
 const ErrorResponse = require("../utils/errorResponse");
 
+// helper function 
+const sendTokenResponse = async (user, codeStatus, res) => {
+  const token = await user.getJwtToken();
+  console.log(token);
+  res
+    .status(codeStatus)
+    .cookie("token", token, { maxAge: 60 * 60 * 1000 }) // cookie set 
+    .json({
+      token,
+      user,
+      success: true,
+      role: user.role,
+    });
+};
+// EXPORTS DOWN HERE!!!!
 exports.signup = async (req, res, next) => {
   const { email, userName } = req.body;
   const userExist = await User.findOne({ email });
@@ -12,7 +27,7 @@ exports.signup = async (req, res, next) => {
     return next(new ErrorResponse("Username already exist", 420));
   }
   try {
-    const user = await User.create(req.body);
+    const user = await User.create(req.body); // calls new User(req.body) and then .save().
     res.status(200).json({
       success: true,
       user,
@@ -21,7 +36,6 @@ exports.signup = async (req, res, next) => {
     next(error);
   }
 };
-
 exports.login = async (req, res, next) => {
   try {
     const { userName, password } = req.body;
@@ -45,29 +59,10 @@ exports.login = async (req, res, next) => {
     }
     console.log("user login");
     sendTokenResponse(user, 200, res);
-    // return res.status(200).json({
-    //    message: "success", user ,
-    //    user
-    //   });
   } catch (error) {
     next(error);
   }
 };
-
-const sendTokenResponse = async (user, codeStatus, res) => {
-  const token = await user.getJwtToken();
-  console.log(token);
-  res
-    .status(codeStatus)
-    .cookie("token", token, { maxAge: 60 * 60 * 1000 })
-    .json({
-      token,
-      user,
-      success: true,
-      role: user.role,
-    });
-};
-
 // log out
 exports.logout = (req, res, next) => {
   res.clearCookie("token");
@@ -76,13 +71,16 @@ exports.logout = (req, res, next) => {
     message: "logged out",
   });
 };
-
 // user profile
 exports.userProfile = async (req, res, next) => {
-  const user = await User.findById(req.user.id).select("-password");
-
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return next(new ErrorResponse("User not found", 404)); // express finds the error middleware
+    }
+    res.status(200).json({ success: true, user });
+  } catch (err) {
+    next(err);
+  }
 };
+
