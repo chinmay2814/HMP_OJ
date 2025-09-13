@@ -35,11 +35,6 @@ const problemSchema = new mongoose.Schema(
       trim: true,
       required: [false, "Output is required"],
     },
-    // testcase: {
-    //     type: ObjectId,
-    //     ref: "Testcase",
-    //     required: true,
-    //   },
     sampleTest: {
       input: {
         type: String,
@@ -57,13 +52,11 @@ const problemSchema = new mongoose.Schema(
         required: true,
       },
     ],
-
     problemType: {
       type: String,
       trim: true,
       required: [true, "Type is required"],
     },
-    
     user: {
       type: ObjectId,
       ref: "User",

@@ -3,24 +3,19 @@ const { ObjectId } = mongoose.Schema;
 
 const testcaseSchema = new mongoose.Schema(
   {
-    input:{
-        type:String,
-        required:true,
+    input: {
+      type: String,
+      required: true,
     },
-    output:{
-        type:String,
-        required:true,
+    output: {
+      type: String,
+      required: true,
     },
-    // user: {
-    //     type: ObjectId,
-    //     ref: "User",
-    //     required: true,
-    //   },
-      problem: {
-        type: ObjectId,
-        ref: "Problem",
-        required: true,
-      },
+    problem: {
+      type: ObjectId,
+      ref: "Problem",
+      required: true,
+    },
 
   },
   { timestamps: true }
